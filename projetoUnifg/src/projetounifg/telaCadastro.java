@@ -96,7 +96,7 @@ public class telaCadastro extends javax.swing.JFrame {
         newAcess.setBackground(java.awt.Color.white);
         newAcess.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         newAcess.setForeground(java.awt.Color.black);
-        newAcess.setText("   ");
+        newAcess.setText("dadadadadad");
         newAcess.setBorder(null);
         newAcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
