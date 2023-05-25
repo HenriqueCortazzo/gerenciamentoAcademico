@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package projetounifg;
-
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
@@ -275,9 +274,6 @@ public class paginaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_userAcessActionPerformed
 
     private void loginAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAutActionPerformed
-//        if(rememberPassword.isSelected()){
-//            
-//        }
 
         if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
             JOptionPane.showMessageDialog(null, "Seja bem vindo, " + userAcess.getText() + "! \nEstamos inciando o sistema");
@@ -330,7 +326,7 @@ public class paginaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordAcessKeyPressed
 
     private void loginAutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginAutKeyPressed
-        if (rememberPassword.isSelected() && userAcess.getText().equals("admin") && passwordAcess.getText().equals("admin")) {
+        if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
             new NewJFrame().setVisible(true);
             dispose();
         }

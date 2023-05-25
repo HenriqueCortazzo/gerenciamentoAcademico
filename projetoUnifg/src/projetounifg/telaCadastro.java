@@ -4,6 +4,8 @@
  */
 package projetounifg;
 
+import java.awt.event.KeyEvent;
+import java.net.URL;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +30,9 @@ public class telaCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinner1 = new javax.swing.JSpinner();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -39,6 +44,10 @@ public class telaCadastro extends javax.swing.JFrame {
         newAcess = new javax.swing.JTextField();
         confirmPassword = new javax.swing.JTextField();
         newPassword = new javax.swing.JTextField();
+
+        jFormattedTextField1.setText("jFormattedTextField1");
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,11 +102,10 @@ public class telaCadastro extends javax.swing.JFrame {
             }
         });
 
-        newAcess.setBackground(java.awt.Color.white);
+        newAcess.setBackground(new java.awt.Color(255, 255, 255));
         newAcess.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         newAcess.setForeground(java.awt.Color.black);
-        newAcess.setText("dadadadadad");
-        newAcess.setBorder(null);
+        newAcess.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10));
         newAcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newAcessActionPerformed(evt);
@@ -112,9 +120,8 @@ public class telaCadastro extends javax.swing.JFrame {
         confirmPassword.setBackground(java.awt.Color.white);
         confirmPassword.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         confirmPassword.setForeground(java.awt.Color.black);
-        confirmPassword.setText("   ");
         confirmPassword.setToolTipText("");
-        confirmPassword.setBorder(null);
+        confirmPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10));
         confirmPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmPasswordActionPerformed(evt);
@@ -129,8 +136,8 @@ public class telaCadastro extends javax.swing.JFrame {
         newPassword.setBackground(java.awt.Color.white);
         newPassword.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         newPassword.setForeground(java.awt.Color.black);
-        newPassword.setText("   ");
-        newPassword.setBorder(null);
+        newPassword.setToolTipText("");
+        newPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10));
         newPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newPasswordActionPerformed(evt);
@@ -217,11 +224,20 @@ public class telaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmPasswordKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (newAcess.getText().equals("Matheus") && newPassword.getText().equals("admin")) {
+               
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário não cadastrado, tente novamente.");
+                newAcess.setText("");
+                newPassword.setText("");
+                loginAut.requestFocus();
+            }
+        }
     }//GEN-LAST:event_confirmPasswordKeyPressed
 
     private void confirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_confirmPasswordActionPerformed
 
     private void loginAutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginAutKeyPressed
@@ -229,10 +245,16 @@ public class telaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_loginAutKeyPressed
 
     private void loginAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAutActionPerformed
-        if (newAcess.getText().equals("admin") && newPassword.getText().equals("admin") && confirmPassword.getText().equals("admin")){
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso."); 
-             new NewJFrame().setVisible(true);
-             dispose();
+
+        if (newAcess.getText().equals("") && newPassword.getText().equals("") && confirmPassword.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Usuário não cadastrado, tente novamente.");
+            newAcess.setText("");
+            newPassword.setText("");
+            confirmPassword.setText("");
+            newAcess.requestFocus();
+        }else{
+            new paginaLogin().setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_loginAutActionPerformed
 
@@ -245,11 +267,15 @@ public class telaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_newPasswordActionPerformed
 
     private void newPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPasswordKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            confirmPassword.requestFocus();
+        }
     }//GEN-LAST:event_newPasswordKeyPressed
 
     private void newAcessKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newAcessKeyPressed
-
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            newPassword.requestFocus();
+        }
     }//GEN-LAST:event_newAcessKeyPressed
 
     private void newAcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAcessActionPerformed
@@ -302,12 +328,15 @@ public class telaCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField confirmPassword;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton loginAut;
     private javax.swing.JTextField newAcess;
     private javax.swing.JTextField newPassword;
