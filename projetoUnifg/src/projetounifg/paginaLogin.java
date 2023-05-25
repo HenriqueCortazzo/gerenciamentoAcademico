@@ -132,6 +132,11 @@ public class paginaLogin extends javax.swing.JFrame {
         jLabel12.setForeground(java.awt.Color.white);
         jLabel12.setText("Não tem uma conta? Cadastre-se ");
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
 
         userAcess.setBackground(new java.awt.Color(25, 118, 225));
         userAcess.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
@@ -332,6 +337,11 @@ public class paginaLogin extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_loginAutKeyPressed
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+      new telaCadastro().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel12MouseClicked
 
     /**
      * @param args the command line arguments
