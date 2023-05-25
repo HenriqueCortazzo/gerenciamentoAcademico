@@ -216,13 +216,15 @@ public class telaCadastro extends javax.swing.JFrame {
 
     private void confirmPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmPasswordKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (newAcess.getText().equals("Matheus") && newPassword.getText().equals("admin")) {
-
-            } else {
+            if (newAcess.getText().equals("") && newPassword.getText().equals("") && confirmPassword.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Usuário não cadastrado, tente novamente.");
                 newAcess.setText("");
                 newPassword.setText("");
+                confirmPassword.setText("");
                 newAcess.requestFocus();
+            } else {
+                new paginaLogin().setVisible(true);
+                dispose();
             }
         }
     }//GEN-LAST:event_confirmPasswordKeyPressed
