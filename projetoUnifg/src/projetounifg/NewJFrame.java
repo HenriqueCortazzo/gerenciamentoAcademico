@@ -51,7 +51,6 @@ public class NewJFrame extends javax.swing.JFrame {
         btn_3 = new javax.swing.JRadioButton();
         btn_2 = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
-        municipio = new javax.swing.JTextField();
         editar = new javax.swing.JToggleButton();
         excluir = new javax.swing.JToggleButton();
         cadastrar = new javax.swing.JToggleButton();
@@ -63,6 +62,7 @@ public class NewJFrame extends javax.swing.JFrame {
         dataNascismento = new javax.swing.JFormattedTextField();
         raAluno = new javax.swing.JFormattedTextField();
         cpf = new javax.swing.JFormattedTextField();
+        municipio = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +108,11 @@ public class NewJFrame extends javax.swing.JFrame {
         curso.setToolTipText("curso");
         curso.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         curso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        curso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cursoActionPerformed(evt);
+            }
+        });
 
         uf.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AC", "AL", "AP\t", "AM", "BA\t", "CE", "DF", "ES\t", "GO", "MA", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SP", "SE", "TO" }));
@@ -208,11 +213,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "RA", "Curso", "Período"
+                "Nome", "RA", "Curso", "Período", "UF", "CPF", "Telefone", " Nascimento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -220,12 +225,14 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         tbAlunos.setToolTipText("Alunos Cadastrados");
-        tbAlunos.setColumnSelectionAllowed(true);
         tbAlunos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbAlunos.setGridColor(java.awt.Color.white);
         tbAlunos.setName(""); // NOI18N
         tbAlunos.setRequestFocusEnabled(false);
         tbAlunos.setRowHeight(32);
+        tbAlunos.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tbAlunos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbAlunos.setShowHorizontalLines(false);
         tbAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAlunosMouseClicked(evt);
@@ -238,6 +245,21 @@ public class NewJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbAlunos);
         tbAlunos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (tbAlunos.getColumnModel().getColumnCount() > 0) {
+            tbAlunos.getColumnModel().getColumn(0).setMinWidth(200);
+            tbAlunos.getColumnModel().getColumn(1).setMaxWidth(200);
+            tbAlunos.getColumnModel().getColumn(2).setMinWidth(0);
+            tbAlunos.getColumnModel().getColumn(3).setMinWidth(110);
+            tbAlunos.getColumnModel().getColumn(3).setMaxWidth(160);
+            tbAlunos.getColumnModel().getColumn(4).setMinWidth(20);
+            tbAlunos.getColumnModel().getColumn(4).setMaxWidth(40);
+            tbAlunos.getColumnModel().getColumn(5).setMinWidth(130);
+            tbAlunos.getColumnModel().getColumn(5).setMaxWidth(130);
+            tbAlunos.getColumnModel().getColumn(6).setMinWidth(130);
+            tbAlunos.getColumnModel().getColumn(6).setMaxWidth(140);
+            tbAlunos.getColumnModel().getColumn(7).setMinWidth(110);
+            tbAlunos.getColumnModel().getColumn(7).setMaxWidth(110);
+        }
 
         try {
             tell.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
@@ -259,6 +281,12 @@ public class NewJFrame extends javax.swing.JFrame {
 
         try {
             cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            municipio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUUUUUUUUUUU")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -356,7 +384,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(raAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,16 +392,17 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel11)
                     .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(curso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(btn_1)
-                    .addComponent(btn_2)
-                    .addComponent(btn_3)
-                    .addComponent(jLabel8)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(curso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
+                        .addComponent(btn_1)
+                        .addComponent(btn_2)
+                        .addComponent(btn_3)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel9)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -446,7 +475,20 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tbAlunosKeyPressed
 
     private void tbAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAlunosMouseClicked
-        int linhaSelecionada = tbAlunos.getSelectedRow();
+        int linhaSelected = tbAlunos.getSelectedRow();
+        nomeAluno.setText(tbAlunos.getValueAt(linhaSelected, 0).toString());
+        raAluno.setText(tbAlunos.getValueAt(linhaSelected, 1).toString());
+        curso.setSelectedItem(tbAlunos.getValueAt(linhaSelected, 2).toString());
+
+        //Será preciso utilizar o banco de dados para sicronizar essas informações abaixo!
+        tell.setText(tbAlunos.getValueAt(linhaSelected, 6).toString());
+        dataNascismento.setText(tbAlunos.getValueAt(linhaSelected, 7).toString());
+        cpf.setText((tbAlunos.getValueAt(linhaSelected, 5).toString()));
+        uf.setSelectedItem(tbAlunos.getValueAt(linhaSelected, 4).toString());
+
+//        campus.setSelectedItem((tbAlunos.getValueAt(linhaSelected, 0).toString()));
+//        municipio.setText(tbAlunos.getValueAt(linhaSelected, 0).toString());
+
     }//GEN-LAST:event_tbAlunosMouseClicked
 
     private void faltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faltasActionPerformed
@@ -462,7 +504,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
         DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
-        Object[] dados = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_1.getText(), btn_2.getText(), btn_3.getText()};
+        Object[] dadosBase = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_1.getText(), btn_2.getText(), btn_3.getText()};
         if (nomeAluno.getText().equals("") || raAluno.getText().equals("") || cpf.getText().equals("") || dataNascismento.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o aluno, tente novamente.");
             nomeAluno.requestFocus();
@@ -470,17 +512,53 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o aluno, tente novamente.");
             curso.requestFocus();
         } else if (btn_1.isSelected()) {
-            btn_1.getText();
-            Object[] dados1 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_1.getText()};
+            Object[] dados1 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_1.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados1);
+            nomeAluno.setText("");
+            raAluno.setText("");
+            curso.setSelectedItem("");
+            btn_1.setSelected(false);
+            btn_2.setSelected(false);
+            btn_3.setSelected(false);
+            cpf.setText("");
+            tell.setText("");
+            dataNascismento.setText("");
+            municipio.setText("");
+            curso.setSelectedItem(" ");
+            campus.setSelectedItem("Selecione um Campus");
+            uf.setSelectedItem(" ");
         } else if (btn_2.isSelected()) {
-            btn_1.getText();
-            Object[] dados2 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_2.getText()};
+            Object[] dados2 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_2.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados2);
+            nomeAluno.setText("");
+            raAluno.setText("");
+            curso.setSelectedItem("");
+            btn_1.setSelected(false);
+            btn_2.setSelected(false);
+            btn_3.setSelected(false);
+            cpf.setText("");
+            tell.setText("");
+            dataNascismento.setText("");
+            municipio.setText("");
+            curso.setSelectedItem(" ");
+            campus.setSelectedItem("Selecione um Campus");
+            uf.setSelectedItem(" ");
         } else if (btn_3.isSelected()) {
-            btn_1.getText();
-            Object[] dados3 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_3.getText()};
+            Object[] dados3 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_3.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados3);
+            nomeAluno.setText("");
+            raAluno.setText("");
+            curso.setSelectedItem("");
+            btn_1.setSelected(false);
+            btn_2.setSelected(false);
+            btn_3.setSelected(false);
+            cpf.setText("");
+            tell.setText("");
+            dataNascismento.setText("");
+            municipio.setText("");
+            curso.setSelectedItem(" ");
+            campus.setSelectedItem("Selecione um Campus");
+            uf.setSelectedItem(" ");
         } else {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar aluno, tente novamente.");
         }
@@ -492,6 +570,20 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o aluno?", "Confirme a ação", WIDTH, JOptionPane.QUESTION_MESSAGE);
             DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
             tbalunos.removeRow(tbAlunos.getSelectedRow());
+            JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
+            nomeAluno.setText("");
+            raAluno.setText("");
+            curso.setSelectedItem("");
+            btn_1.setSelected(false);
+            btn_2.setSelected(false);
+            btn_3.setSelected(false);
+            cpf.setText("");
+            tell.setText("");
+            dataNascismento.setText("");
+            municipio.setText("");
+            curso.setSelectedItem(" ");
+            campus.setSelectedItem("Selecione um Campus");
+            uf.setSelectedItem(" ");
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um Aluno para exclusão.");
         }
@@ -499,14 +591,20 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+
         if (tbAlunos.getSelectedRow() != -1) {
-            JOptionPane.showConfirmDialog(null, "Deseja realmente editar dados do aluno?", "Confirme a ação", WIDTH, JOptionPane.QUESTION_MESSAGE);
-            tbAlunos.setValueAt(nomeAluno.getText(), tbAlunos.getSelectedRow(), 0);
-            tbAlunos.setValueAt(raAluno.getText(), tbAlunos.getSelectedRow(), 1);
-            tbAlunos.setValueAt(curso.getSelectedItem(), tbAlunos.getSelectedRow(), 2);
-            nomeAluno.setText("");
-            raAluno.setText("");
-            curso.setSelectedItem("");
+            if (curso.getSelectedItem().equals(" ") || uf.getSelectedItem().equals(" ") || campus.getSelectedItem().equals("Selecione um Campus")) {
+                JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
+            } else {
+                JOptionPane.showConfirmDialog(null, "Deseja realmente editar dados do aluno?", "Confirme a ação", WIDTH, JOptionPane.QUESTION_MESSAGE);
+                tbAlunos.setValueAt(nomeAluno.getText(), tbAlunos.getSelectedRow(), 0);
+                tbAlunos.setValueAt(raAluno.getText(), tbAlunos.getSelectedRow(), 1);
+                tbAlunos.setValueAt(curso.getSelectedItem(), tbAlunos.getSelectedRow(), 2);
+                tbAlunos.setValueAt(uf.getSelectedItem(), tbAlunos.getSelectedRow(), 4);
+                tbAlunos.setValueAt(cpf.getText(), tbAlunos.getSelectedRow(), 5);
+                tbAlunos.setValueAt(tell.getText(), tbAlunos.getSelectedRow(), 6);
+                tbAlunos.setValueAt(dataNascismento.getText(), tbAlunos.getSelectedRow(), 7);
+            }
         }
     }//GEN-LAST:event_editarActionPerformed
 
@@ -532,6 +630,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void ufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ufActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ufActionPerformed
+
+    private void cursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cursoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -604,7 +706,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField municipio;
+    private javax.swing.JFormattedTextField municipio;
     private javax.swing.JTextField nomeAluno;
     private javax.swing.JFormattedTextField raAluno;
     private javax.swing.JTable tbAlunos;
