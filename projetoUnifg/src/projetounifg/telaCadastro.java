@@ -234,7 +234,7 @@ public class telaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmPasswordActionPerformed
 
     private void loginAutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginAutKeyPressed
-
+//
     }//GEN-LAST:event_loginAutKeyPressed
 
     private void loginAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAutActionPerformed
