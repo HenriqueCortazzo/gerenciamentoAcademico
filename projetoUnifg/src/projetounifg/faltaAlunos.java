@@ -17,6 +17,11 @@ public class faltaAlunos extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void receberDados(notas modelo) {
+        nomeDoAluno2.setText(modelo.getNome());
+        ra2.setText(modelo.getRa());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,10 +37,12 @@ public class faltaAlunos extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        gerarBoletim2 = new javax.swing.JButton();
+        verFalta = new javax.swing.JButton();
         ra2 = new javax.swing.JTextField();
         nomeDoAluno2 = new javax.swing.JTextField();
-        resultadoMedia2 = new javax.swing.JTextField();
+        adicionarFalta = new javax.swing.JButton();
+        resultadoGeral = new javax.swing.JTextField();
+        receberFalta1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,14 +67,14 @@ public class faltaAlunos extends javax.swing.JFrame {
         jLabel24.setForeground(java.awt.Color.white);
         jLabel24.setText("Adicionar Faltas");
 
-        gerarBoletim2.setBackground(java.awt.Color.white);
-        gerarBoletim2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        gerarBoletim2.setForeground(java.awt.Color.black);
-        gerarBoletim2.setText("Ver Faltas");
-        gerarBoletim2.setBorder(null);
-        gerarBoletim2.addActionListener(new java.awt.event.ActionListener() {
+        verFalta.setBackground(java.awt.Color.white);
+        verFalta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        verFalta.setForeground(java.awt.Color.black);
+        verFalta.setText("Ver Faltas");
+        verFalta.setBorder(null);
+        verFalta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gerarBoletim2ActionPerformed(evt);
+                verFaltaActionPerformed(evt);
             }
         });
 
@@ -83,8 +90,32 @@ public class faltaAlunos extends javax.swing.JFrame {
         nomeDoAluno2.setBackground(java.awt.Color.white);
         nomeDoAluno2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        resultadoMedia2.setBackground(java.awt.Color.white);
-        resultadoMedia2.setForeground(java.awt.Color.black);
+        adicionarFalta.setBackground(java.awt.Color.white);
+        adicionarFalta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        adicionarFalta.setForeground(java.awt.Color.black);
+        adicionarFalta.setText("Adicionar Faltas");
+        adicionarFalta.setBorder(null);
+        adicionarFalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarFaltaActionPerformed(evt);
+            }
+        });
+
+        resultadoGeral.setBackground(java.awt.Color.white);
+        resultadoGeral.setForeground(java.awt.Color.black);
+        resultadoGeral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultadoGeralActionPerformed(evt);
+            }
+        });
+
+        receberFalta1.setBackground(java.awt.Color.white);
+        receberFalta1.setForeground(java.awt.Color.black);
+        receberFalta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receberFalta1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -95,30 +126,32 @@ public class faltaAlunos extends javax.swing.JFrame {
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(nomeDoAluno2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                        .addGap(24, 24, 24))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(ra2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 27, Short.MAX_VALUE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel24)
-                                    .addComponent(resultadoMedia2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(gerarBoletim2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43))))))
-            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ra2)
+                            .addComponent(nomeDoAluno2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel24)
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(verFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(resultadoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(receberFalta1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                                .addGap(35, 35, 35)
+                                .addComponent(adicionarFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(24, 24, 24))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,13 +166,16 @@ public class faltaAlunos extends javax.swing.JFrame {
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ra2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(gerarBoletim2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(resultadoMedia2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addGap(79, 79, 79))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(adicionarFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(receberFalta1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resultadoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -152,7 +188,7 @@ public class faltaAlunos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,7 +202,7 @@ public class faltaAlunos extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(416, 341));
+        setSize(new java.awt.Dimension(416, 363));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -174,9 +210,37 @@ public class faltaAlunos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ra2ActionPerformed
 
-    private void gerarBoletim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarBoletim2ActionPerformed
+    private void verFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFaltaActionPerformed
+        faltasAtribuidas verTodasFaltas = new faltasAtribuidas();
+        String todasFaltas = resultadoGeral.getText();
+        int numeroTotalFaltas = Integer.parseInt(todasFaltas);
+        int result = verTodasFaltas.verFaltas(numeroTotalFaltas);
+        String resultado = Integer.toString(result);
+        resultadoGeral.setText(resultado);
+        receberFalta1.setText("");
+        resultadoGeral.setText("");
+
+        
+       
+    }//GEN-LAST:event_verFaltaActionPerformed
+
+    private void adicionarFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarFaltaActionPerformed
+        faltasAtribuidas totalFaltas = new faltasAtribuidas();
+        String nFaltas = receberFalta1.getText();
+        int numeroFaltas = Integer.parseInt(nFaltas);
+        int result = totalFaltas.adicionarFaltas(numeroFaltas);
+        String resultado = Integer.toString(result);
+        resultadoGeral.setText(resultado);
+        receberFalta1.setText("");
+    }//GEN-LAST:event_adicionarFaltaActionPerformed
+
+    private void resultadoGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadoGeralActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gerarBoletim2ActionPerformed
+    }//GEN-LAST:event_resultadoGeralActionPerformed
+
+    private void receberFalta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receberFalta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_receberFalta1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +278,7 @@ public class faltaAlunos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton gerarBoletim2;
+    private javax.swing.JButton adicionarFalta;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
@@ -223,6 +287,8 @@ public class faltaAlunos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField nomeDoAluno2;
     private javax.swing.JTextField ra2;
-    private javax.swing.JTextField resultadoMedia2;
+    private javax.swing.JTextField receberFalta1;
+    private javax.swing.JTextField resultadoGeral;
+    private javax.swing.JButton verFalta;
     // End of variables declaration//GEN-END:variables
 }

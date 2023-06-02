@@ -497,13 +497,18 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void faltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faltasActionPerformed
         faltaAlunos novaJanela = new faltaAlunos();
-        novaJanela.setVisible(true);
+        int rowSelected = tbAlunos.getSelectedRow();
+        notas modelo = new notas();
+        modelo.setNome(tbAlunos.getValueAt(rowSelected, 0).toString());
+        modelo.setRa(tbAlunos.getValueAt(rowSelected, 1).toString());
+        faltaAlunos faltas = new faltaAlunos();
+        faltas.receberDados(modelo);
+        faltas.setVisible(true);
     }//GEN-LAST:event_faltasActionPerformed
 
     private void gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarActionPerformed
 
         notaAlunos novaJanela = new notaAlunos();
-        novaJanela.setVisible(true);
         int rowSelected = tbAlunos.getSelectedRow();
         notas modelo = new notas();
         modelo.setNome(tbAlunos.getValueAt(rowSelected, 0).toString());
