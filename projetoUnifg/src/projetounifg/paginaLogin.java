@@ -20,7 +20,7 @@ public class paginaLogin extends javax.swing.JFrame {
         initComponents();
         userAcess.setBackground(new java.awt.Color(0, 0, 0, 1));
         passwordAcess.setBackground(new java.awt.Color(0, 0, 0, 1));
-    }
+;    }
 
     /**
      * This method is called from within the constructor to initialize the form.

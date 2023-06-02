@@ -7,6 +7,8 @@ package projetounifg;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import projetounifg.notaAlunos;
+import projetounifg.notas;
 
 /**
  *
@@ -217,7 +219,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -225,6 +227,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         tbAlunos.setToolTipText("Alunos Cadastrados");
+        tbAlunos.setColumnSelectionAllowed(true);
         tbAlunos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbAlunos.setGridColor(java.awt.Color.white);
         tbAlunos.setName(""); // NOI18N
@@ -486,6 +489,7 @@ public class NewJFrame extends javax.swing.JFrame {
         cpf.setText((tbAlunos.getValueAt(linhaSelected, 5).toString()));
         uf.setSelectedItem(tbAlunos.getValueAt(linhaSelected, 4).toString());
 
+//        È preciso refatorar
 //        campus.setSelectedItem((tbAlunos.getValueAt(linhaSelected, 0).toString()));
 //        municipio.setText(tbAlunos.getValueAt(linhaSelected, 0).toString());
 
@@ -500,6 +504,13 @@ public class NewJFrame extends javax.swing.JFrame {
 
         notaAlunos novaJanela = new notaAlunos();
         novaJanela.setVisible(true);
+        int rowSelected = tbAlunos.getSelectedRow();
+        notas modelo = new notas();
+        modelo.setNome(tbAlunos.getValueAt(rowSelected, 0).toString());
+        modelo.setRa(tbAlunos.getValueAt(rowSelected, 1).toString());
+        notaAlunos notas = new notaAlunos();
+        notas.receberDados(modelo);
+        notas.setVisible(true);
     }//GEN-LAST:event_gerarActionPerformed
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed

@@ -65,6 +65,11 @@ public class faltaAlunos extends javax.swing.JFrame {
         gerarBoletim2.setForeground(java.awt.Color.black);
         gerarBoletim2.setText("Ver Faltas");
         gerarBoletim2.setBorder(null);
+        gerarBoletim2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarBoletim2ActionPerformed(evt);
+            }
+        });
 
         ra2.setBackground(java.awt.Color.white);
         ra2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -169,6 +174,10 @@ public class faltaAlunos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ra2ActionPerformed
 
+    private void gerarBoletim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarBoletim2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gerarBoletim2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,49 +214,15 @@ public class faltaAlunos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton gerarBoletim;
-    private javax.swing.JButton gerarBoletim1;
     private javax.swing.JButton gerarBoletim2;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField nomeDoAluno;
-    private javax.swing.JTextField nomeDoAluno1;
     private javax.swing.JTextField nomeDoAluno2;
-    private javax.swing.JTextField nota1;
-    private javax.swing.JTextField nota2;
-    private javax.swing.JTextField nota3;
-    private javax.swing.JTextField nota4;
-    private javax.swing.JTextField nota5;
-    private javax.swing.JTextField nota6;
-    private javax.swing.JTextField nota7;
-    private javax.swing.JTextField nota8;
-    private javax.swing.JTextField ra;
-    private javax.swing.JTextField ra1;
     private javax.swing.JTextField ra2;
-    private javax.swing.JTextField resultadoMedia;
-    private javax.swing.JTextField resultadoMedia1;
     private javax.swing.JTextField resultadoMedia2;
     // End of variables declaration//GEN-END:variables
 }

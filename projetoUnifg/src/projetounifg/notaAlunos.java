@@ -4,6 +4,8 @@
  */
 package projetounifg;
 
+import projetounifg.notas;
+
 /**
  *
  * @author MatheusWP
@@ -15,6 +17,7 @@ public class notaAlunos extends javax.swing.JFrame {
      */
     public notaAlunos() {
         initComponents();
+
     }
 
     /**
@@ -35,15 +38,15 @@ public class notaAlunos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        nota1 = new javax.swing.JTextField();
-        nota2 = new javax.swing.JTextField();
-        nota3 = new javax.swing.JTextField();
-        nota4 = new javax.swing.JTextField();
         gerarBoletim = new javax.swing.JButton();
         ra = new javax.swing.JTextField();
         nomeDoAluno = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         resultadoMedia = new javax.swing.JTextField();
+        nota1 = new javax.swing.JFormattedTextField();
+        nota2 = new javax.swing.JFormattedTextField();
+        nota3 = new javax.swing.JFormattedTextField();
+        nota4 = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -80,23 +83,16 @@ public class notaAlunos extends javax.swing.JFrame {
         jLabel8.setForeground(java.awt.Color.white);
         jLabel8.setText("Nota 4");
 
-        nota1.setBackground(java.awt.Color.white);
-        nota1.setForeground(java.awt.Color.black);
-
-        nota2.setBackground(java.awt.Color.white);
-        nota2.setForeground(java.awt.Color.black);
-
-        nota3.setBackground(java.awt.Color.white);
-        nota3.setForeground(java.awt.Color.black);
-
-        nota4.setBackground(java.awt.Color.white);
-        nota4.setForeground(java.awt.Color.black);
-
         gerarBoletim.setBackground(java.awt.Color.white);
         gerarBoletim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gerarBoletim.setForeground(java.awt.Color.black);
         gerarBoletim.setText("Gerar Boletim");
         gerarBoletim.setBorder(null);
+        gerarBoletim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarBoletimActionPerformed(evt);
+            }
+        });
 
         ra.setBackground(java.awt.Color.white);
         ra.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -109,6 +105,11 @@ public class notaAlunos extends javax.swing.JFrame {
 
         nomeDoAluno.setBackground(java.awt.Color.white);
         nomeDoAluno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nomeDoAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeDoAlunoActionPerformed(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setForeground(java.awt.Color.white);
@@ -117,6 +118,35 @@ public class notaAlunos extends javax.swing.JFrame {
 
         resultadoMedia.setBackground(java.awt.Color.white);
         resultadoMedia.setForeground(java.awt.Color.black);
+
+        try {
+            nota1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        nota1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nota1ActionPerformed(evt);
+            }
+        });
+
+        try {
+            nota2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            nota3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            nota4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,24 +161,24 @@ public class notaAlunos extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nota1))
+                                .addComponent(nota1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
+                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nota2, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                                    .addComponent(nota3)))
+                                .addComponent(nota3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                             .addComponent(resultadoMedia)
@@ -193,22 +223,22 @@ public class notaAlunos extends javax.swing.JFrame {
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nota1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(resultadoMedia)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(resultadoMedia)
+                                    .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nota3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nota3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -226,10 +256,40 @@ public class notaAlunos extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(409, 425));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+  public void receberDados(notas modelo) {
+        nomeDoAluno.setText(modelo.getNome());
+        ra.setText(modelo.getRa());
+    }
 
     private void raActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_raActionPerformed
+
+    private void nomeDoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeDoAlunoActionPerformed
+//        if (nomeDoAluno.equals("") || ra.equals("")) {
+//            nomeDoAluno.requestFocus();
+//        } else {
+//            nota1.requestFocus();
+//        }
+
+    }//GEN-LAST:event_nomeDoAlunoActionPerformed
+
+    private void gerarBoletimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarBoletimActionPerformed
+        notas method = new notas();
+        double primeiraNota = Double.parseDouble(nota1.getText());
+        double segundaNota = Double.parseDouble(nota2.getText());
+        double terceiraNota = Double.parseDouble(nota3.getText());
+        double quartaNota = Double.parseDouble(nota4.getText());
+        double resultado = method.calcularNota(primeiraNota, segundaNota, terceiraNota, quartaNota);
+        String novoResultado = Double.toString(resultado);
+        resultadoMedia.setText(novoResultado);
+
+
+    }//GEN-LAST:event_gerarBoletimActionPerformed
+
+    private void nota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota1ActionPerformed
+
+    }//GEN-LAST:event_nota1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,15 +326,10 @@ public class notaAlunos extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton gerarBoletim;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -283,17 +338,21 @@ public class notaAlunos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField nomeDoAluno;
-    private javax.swing.JTextField nota1;
-    private javax.swing.JTextField nota2;
-    private javax.swing.JTextField nota3;
-    private javax.swing.JTextField nota4;
+    private javax.swing.JFormattedTextField nota1;
+    private javax.swing.JFormattedTextField nota2;
+    private javax.swing.JFormattedTextField nota3;
+    private javax.swing.JFormattedTextField nota4;
     private javax.swing.JTextField ra;
     private javax.swing.JTextField resultadoMedia;
     // End of variables declaration//GEN-END:variables
+
+    private void recebernota() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void gerarBoletimActionPerformed() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
