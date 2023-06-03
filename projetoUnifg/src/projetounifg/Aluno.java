@@ -9,12 +9,22 @@ package projetounifg;
  * @author MatheusWP
  */
 public class Aluno {
+
     private String nome;
     private int ra;
     private int telefone;
     private int data;
     private String municipio;
     private int cpf;
+
+    public Aluno(String nome, int ra, int telefone, int data, String municipio, int cpf) {
+        this.nome = nome;
+        this.ra = ra;
+        this.telefone = telefone;
+        this.data = data;
+        this.municipio = municipio;
+        this.cpf = cpf;
+    }
 
     /**
      * @return the nome
