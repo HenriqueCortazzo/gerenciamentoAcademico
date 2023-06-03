@@ -17,6 +17,9 @@ public class Aluno {
     private String municipio;
     private int cpf;
 
+    
+    //constructor
+    
     public Aluno(String nome, int ra, int telefone, int data, String municipio, int cpf) {
         this.nome = nome;
         this.ra = ra;
