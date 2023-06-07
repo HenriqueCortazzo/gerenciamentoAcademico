@@ -117,7 +117,7 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         uf.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AC", "AL", "AP\t", "AM", "BA\t", "CE", "DF", "ES\t", "GO", "MA", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SP", "SE", "TO" }));
+        uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "     ", "AC", "AL", "AP\t", "AM", "BA\t", "CE", "DF", "ES\t", "GO", "MA", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SP", "SE", "TO" }));
         uf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ufActionPerformed(evt);
@@ -530,6 +530,7 @@ public class NewJFrame extends javax.swing.JFrame {
         } else if (btn_1.isSelected()) {
             Object[] dados1 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_1.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados1);
+            JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
             nomeAluno.setText("");
             raAluno.setText("");
             curso.setSelectedItem("");
@@ -546,6 +547,7 @@ public class NewJFrame extends javax.swing.JFrame {
         } else if (btn_2.isSelected()) {
             Object[] dados2 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_2.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados2);
+            JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
             nomeAluno.setText("");
             raAluno.setText("");
             curso.setSelectedItem("");
@@ -562,6 +564,7 @@ public class NewJFrame extends javax.swing.JFrame {
         } else if (btn_3.isSelected()) {
             Object[] dados3 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_3.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados3);
+            JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
             nomeAluno.setText("");
             raAluno.setText("");
             curso.setSelectedItem("");
@@ -578,32 +581,41 @@ public class NewJFrame extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar aluno, tente novamente.");
         }
-
     }//GEN-LAST:event_cadastrarActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-        if (tbAlunos.getSelectedRow() != -1) {
-            JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o aluno?", "Confirme a ação", WIDTH, JOptionPane.QUESTION_MESSAGE);
-            DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
-            tbalunos.removeRow(tbAlunos.getSelectedRow());
-            JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
-            nomeAluno.setText("");
-            raAluno.setText("");
-            curso.setSelectedItem("");
-            btn_1.setSelected(false);
-            btn_2.setSelected(false);
-            btn_3.setSelected(false);
-            cpf.setText("");
-            tell.setText("");
-            dataNascismento.setText("");
-            municipio.setText("");
-            curso.setSelectedItem(" ");
-            campus.setSelectedItem("Selecione um Campus");
-            uf.setSelectedItem(" ");
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Aluno para exclusão.");
-        }
 
+        if (tbAlunos.getSelectedRow() != -1) {
+            int i = JOptionPane.showConfirmDialog(
+                    null,
+                    "Deseja realmente Excluir o aluno?"
+            );
+            if (i == JOptionPane.YES_OPTION) {
+                DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
+                tbalunos.removeRow(tbAlunos.getSelectedRow());
+                JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
+                nomeAluno.setText("");
+                raAluno.setText("");
+                curso.setSelectedItem("");
+                btn_1.setSelected(false);
+                btn_2.setSelected(false);
+                btn_3.setSelected(false);
+                cpf.setText("");
+                tell.setText("");
+                dataNascismento.setText("");
+                municipio.setText("");
+                curso.setSelectedItem(" ");
+                campus.setSelectedItem("Selecione um Campus");
+                uf.setSelectedItem(" ");
+                JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
+            } else if (i == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Nenhuma alteração feita.");
+
+            } else if (i == JOptionPane.CANCEL_OPTION) {
+                JOptionPane.showMessageDialog(null, "Houve um cancelamento na operação.");
+            }
+
+        }
     }//GEN-LAST:event_excluirActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -612,14 +624,40 @@ public class NewJFrame extends javax.swing.JFrame {
             if (curso.getSelectedItem().equals(" ") || uf.getSelectedItem().equals(" ") || campus.getSelectedItem().equals("Selecione um Campus")) {
                 JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
             } else {
-                JOptionPane.showConfirmDialog(null, "Deseja realmente editar dados do aluno?", "Confirme a ação", WIDTH, JOptionPane.QUESTION_MESSAGE);
-                tbAlunos.setValueAt(nomeAluno.getText(), tbAlunos.getSelectedRow(), 0);
-                tbAlunos.setValueAt(raAluno.getText(), tbAlunos.getSelectedRow(), 1);
-                tbAlunos.setValueAt(curso.getSelectedItem(), tbAlunos.getSelectedRow(), 2);
-                tbAlunos.setValueAt(uf.getSelectedItem(), tbAlunos.getSelectedRow(), 4);
-                tbAlunos.setValueAt(cpf.getText(), tbAlunos.getSelectedRow(), 5);
-                tbAlunos.setValueAt(tell.getText(), tbAlunos.getSelectedRow(), 6);
-                tbAlunos.setValueAt(dataNascismento.getText(), tbAlunos.getSelectedRow(), 7);
+                int i = JOptionPane.showConfirmDialog(
+                        null,
+                        "Deseja realmente editar dados do aluno?"
+                );
+                if (i == JOptionPane.YES_OPTION) {
+                    DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
+                    tbAlunos.setValueAt(nomeAluno.getText(), tbAlunos.getSelectedRow(), 0);
+                    tbAlunos.setValueAt(raAluno.getText(), tbAlunos.getSelectedRow(), 1);
+                    tbAlunos.setValueAt(curso.getSelectedItem(), tbAlunos.getSelectedRow(), 2);
+                    tbAlunos.setValueAt(uf.getSelectedItem(), tbAlunos.getSelectedRow(), 4);
+                    tbAlunos.setValueAt(cpf.getText(), tbAlunos.getSelectedRow(), 5);
+                    tbAlunos.setValueAt(tell.getText(), tbAlunos.getSelectedRow(), 6);
+                    tbAlunos.setValueAt(dataNascismento.getText(), tbAlunos.getSelectedRow(), 7);
+                    JOptionPane.showMessageDialog(null, "Dados alterados com sucesso.");
+                    nomeAluno.setText("");
+                    raAluno.setText("");
+                    curso.setSelectedItem("");
+                    btn_1.setSelected(false);
+                    btn_2.setSelected(false);
+                    btn_3.setSelected(false);
+                    cpf.setText("");
+                    tell.setText("");
+                    dataNascismento.setText("");
+                    municipio.setText("");
+                    curso.setSelectedItem(" ");
+                    campus.setSelectedItem("Selecione um Campus");
+                    uf.setSelectedItem(" ");
+                } else if (i == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Nenhuma alteração feita.");
+
+                } else if (i == JOptionPane.CANCEL_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Houve um cancelamento na operação.");
+                };
+
             }
         }
     }//GEN-LAST:event_editarActionPerformed
