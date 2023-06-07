@@ -4,6 +4,9 @@
  */
 package projetounifg;
 
+import static java.awt.image.ImageObserver.WIDTH;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MatheusWP
@@ -11,22 +14,33 @@ package projetounifg;
 public class Aluno {
 
     private String nome;
-    private int ra;
-    private int telefone;
-    private int data;
+    private String ra;
+    private String telefone;
+    private String data;
     private String municipio;
-    private int cpf;
+    private String cpf;
+    private boolean periodo1;
+    private boolean periodo2;
+    private boolean periodo3;
+    private String curso;
+    private String uf;
+    private String campus;
 
-    
     //constructor
-    
-    public Aluno(String nome, int ra, int telefone, int data, String municipio, int cpf) {
+    public Aluno(String nome, String ra, String telefone, String data, String municipio, String cpf, String curso, boolean periodo1, boolean periodo2, boolean periodo3, String uf, String campus) {
         this.nome = nome;
         this.ra = ra;
         this.telefone = telefone;
         this.data = data;
         this.municipio = municipio;
         this.cpf = cpf;
+        this.curso = curso;
+        this.periodo1 = periodo1;
+        this.periodo2 = periodo2;
+        this.periodo3 = periodo3;
+        this.campus = campus;
+        this.uf = uf;
+
     }
 
     /**
@@ -46,42 +60,42 @@ public class Aluno {
     /**
      * @return the ra
      */
-    public int getRa() {
+    public String getRa() {
         return ra;
     }
 
     /**
      * @param ra the ra to set
      */
-    public void setRa(int ra) {
+    public void setRa(String ra) {
         this.ra = ra;
     }
 
     /**
      * @return the telefone
      */
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
     /**
      * @return the data
      */
-    public int getData() {
+    public String getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(int data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -102,14 +116,59 @@ public class Aluno {
     /**
      * @return the cpf
      */
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    /**
+     * @return the periodo1
+     */
+    /**
+     * @return the curso
+     */
+    public String getCurso() {
+        return curso;
+    }
+
+    /**
+     * @param curso the curso to set
+     */
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    /**
+     * @return the uf
+     */
+    public String getUf() {
+        return uf;
+    }
+
+    /**
+     * @param uf the uf to set
+     */
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    /**
+     * @return the campus
+     */
+    public String getCampus() {
+        return campus;
+    }
+
+    /**
+     * @param campus the campus to set
+     */
+    public void setCampus(String campus) {
+        this.campus = campus;
     }
 }
