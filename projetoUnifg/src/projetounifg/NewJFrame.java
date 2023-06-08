@@ -6,6 +6,7 @@ package projetounifg;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 import projetounifg.notaAlunos;
 import projetounifg.notas;
@@ -166,6 +167,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel11.setForeground(java.awt.Color.white);
         jLabel11.setText("Munícipio");
 
+        editar.setBackground(java.awt.Color.white);
         editar.setText("Editar Aluno");
         editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +176,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        excluir.setBackground(java.awt.Color.white);
         excluir.setText("Excluir Aluno");
         excluir.setToolTipText("");
         excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -183,6 +186,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        cadastrar.setBackground(java.awt.Color.white);
         cadastrar.setText("Cadastrar Aluno");
         cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +195,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        gerar.setBackground(java.awt.Color.white);
         gerar.setText("Gerar Boletim");
         gerar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gerar.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +204,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        faltas.setBackground(java.awt.Color.white);
         faltas.setText("Faltas");
         faltas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         faltas.addActionListener(new java.awt.event.ActionListener() {
@@ -496,6 +502,9 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tbAlunosMouseClicked
 
     private void faltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faltasActionPerformed
+        if (tbAlunos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluno para gerenciamento de notas.");
+        };
         faltaAlunos novaJanela = new faltaAlunos();
         int rowSelected = tbAlunos.getSelectedRow();
         notas modelo = new notas();
@@ -507,7 +516,9 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_faltasActionPerformed
 
     private void gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarActionPerformed
-
+        if (tbAlunos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluno para emissão de boletim.");
+        }
         notaAlunos novaJanela = new notaAlunos();
         int rowSelected = tbAlunos.getSelectedRow();
         notas modelo = new notas();
@@ -516,6 +527,7 @@ public class NewJFrame extends javax.swing.JFrame {
         notaAlunos notas = new notaAlunos();
         notas.receberDados(modelo);
         notas.setVisible(true);
+        
     }//GEN-LAST:event_gerarActionPerformed
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
@@ -564,7 +576,6 @@ public class NewJFrame extends javax.swing.JFrame {
         } else if (btn_3.isSelected()) {
             Object[] dados3 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_3.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados3);
-            JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
             nomeAluno.setText("");
             raAluno.setText("");
             curso.setSelectedItem("");
@@ -578,14 +589,16 @@ public class NewJFrame extends javax.swing.JFrame {
             curso.setSelectedItem(" ");
             campus.setSelectedItem("Selecione um Campus");
             uf.setSelectedItem(" ");
+            JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar aluno, tente novamente.");
         }
     }//GEN-LAST:event_cadastrarActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-
-        if (tbAlunos.getSelectedRow() != -1) {
+        if (tbAlunos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluno para exclusão.");
+        } else if (tbAlunos.getSelectedRow() != -1) {
             int i = JOptionPane.showConfirmDialog(
                     null,
                     "Deseja realmente Excluir o aluno?"
@@ -593,7 +606,6 @@ public class NewJFrame extends javax.swing.JFrame {
             if (i == JOptionPane.YES_OPTION) {
                 DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
                 tbalunos.removeRow(tbAlunos.getSelectedRow());
-                JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
                 nomeAluno.setText("");
                 raAluno.setText("");
                 curso.setSelectedItem("");
@@ -613,15 +625,25 @@ public class NewJFrame extends javax.swing.JFrame {
 
             } else if (i == JOptionPane.CANCEL_OPTION) {
                 JOptionPane.showMessageDialog(null, "Houve um cancelamento na operação.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um Aluno para exclusão.");
             }
 
         }
     }//GEN-LAST:event_excluirActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-
-        if (tbAlunos.getSelectedRow() != -1) {
+        boolean turnoMat = btn_1.isSelected();
+        boolean turnoVesp = btn_2.isSelected();
+        boolean turnoNot = btn_3.isSelected();
+        if (tbAlunos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluno para edição.");
+        } else if (tbAlunos.getSelectedRow() != -1) {
             if (curso.getSelectedItem().equals(" ") || uf.getSelectedItem().equals(" ") || campus.getSelectedItem().equals("Selecione um Campus")) {
+                JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
+            } else if (dataNascismento.equals("  /  /    ") || municipio.equals("            ")) {
+                JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
+            } else if (turnoMat == false && turnoVesp == false && turnoNot == false) {
                 JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
             } else {
                 int i = JOptionPane.showConfirmDialog(
@@ -637,7 +659,15 @@ public class NewJFrame extends javax.swing.JFrame {
                     tbAlunos.setValueAt(cpf.getText(), tbAlunos.getSelectedRow(), 5);
                     tbAlunos.setValueAt(tell.getText(), tbAlunos.getSelectedRow(), 6);
                     tbAlunos.setValueAt(dataNascismento.getText(), tbAlunos.getSelectedRow(), 7);
-                    JOptionPane.showMessageDialog(null, "Dados alterados com sucesso.");
+                    if (turnoMat == true) {
+                        tbAlunos.setValueAt(btn_1.getText(), tbAlunos.getSelectedRow(), 3);
+                    } else if (turnoVesp == true) {
+                        tbAlunos.setValueAt(btn_2.getText(), tbAlunos.getSelectedRow(), 3);
+                    } else if (turnoNot == true) {
+                        tbAlunos.setValueAt(btn_3.getText(), tbAlunos.getSelectedRow(), 3);
+
+                        JOptionPane.showMessageDialog(null, "Dados alterados com sucesso.");
+                    }
                     nomeAluno.setText("");
                     raAluno.setText("");
                     curso.setSelectedItem("");
@@ -653,11 +683,9 @@ public class NewJFrame extends javax.swing.JFrame {
                     uf.setSelectedItem(" ");
                 } else if (i == JOptionPane.NO_OPTION) {
                     JOptionPane.showMessageDialog(null, "Nenhuma alteração feita.");
-
                 } else if (i == JOptionPane.CANCEL_OPTION) {
                     JOptionPane.showMessageDialog(null, "Houve um cancelamento na operação.");
-                };
-
+                }
             }
         }
     }//GEN-LAST:event_editarActionPerformed
