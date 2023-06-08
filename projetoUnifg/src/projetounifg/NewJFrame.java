@@ -118,7 +118,7 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         uf.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "     ", "AC", "AL", "AP\t", "AM", "BA\t", "CE", "DF", "ES\t", "GO", "MA", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SP", "SE", "TO" }));
+        uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "\t", "AC", "AL", "AP\t", "AM", "BA\t", "CE", "DF", "ES\t", "GO", "MA", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SP", "SE", "TO" }));
         uf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ufActionPerformed(evt);
@@ -527,18 +527,27 @@ public class NewJFrame extends javax.swing.JFrame {
         notaAlunos notas = new notaAlunos();
         notas.receberDados(modelo);
         notas.setVisible(true);
-        
+
     }//GEN-LAST:event_gerarActionPerformed
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+        boolean turnoMat = btn_1.isSelected();
+        boolean turnoVesp = btn_2.isSelected();
+        boolean turnoNot = btn_3.isSelected();
         DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
         Object[] dadosBase = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_1.getText(), btn_2.getText(), btn_3.getText()};
-        if (nomeAluno.getText().equals("") || raAluno.getText().equals("") || cpf.getText().equals("") || dataNascismento.getText().equals("")) {
+        if (nomeAluno.getText().equals("") || raAluno.getText().equals("        ") || cpf.getText().equals("   .   .   -  ") || dataNascismento.getText().equals("  /  /    ")) {
             JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o aluno, tente novamente.");
             nomeAluno.requestFocus();
-        } else if (curso.getSelectedItem().equals(" ") || uf.getSelectedItem().equals(" ") || campus.getSelectedItem().equals("Selecione um Campus")) {
+        } else if (curso.getSelectedItem().equals(" ") || uf.getSelectedItem().equals("	") || campus.getSelectedItem().equals("Selecione um Campus")) {
             JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o aluno, tente novamente.");
             curso.requestFocus();
+        } else if (tell.getText().equals("(  )       -") || municipio.getText().equals("            ")) {
+            JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o aluno, tente novamente.");
+            curso.requestFocus();
+
+        } else if (turnoMat == false && turnoVesp == false && turnoNot == false) {
+            JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o aluno, tente novamente.");
         } else if (btn_1.isSelected()) {
             Object[] dados1 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_1.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados1);
@@ -555,7 +564,7 @@ public class NewJFrame extends javax.swing.JFrame {
             municipio.setText("");
             curso.setSelectedItem(" ");
             campus.setSelectedItem("Selecione um Campus");
-            uf.setSelectedItem(" ");
+            uf.setSelectedItem("	");
         } else if (btn_2.isSelected()) {
             Object[] dados2 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_2.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados2);
@@ -572,7 +581,7 @@ public class NewJFrame extends javax.swing.JFrame {
             municipio.setText("");
             curso.setSelectedItem(" ");
             campus.setSelectedItem("Selecione um Campus");
-            uf.setSelectedItem(" ");
+            uf.setSelectedItem("	");
         } else if (btn_3.isSelected()) {
             Object[] dados3 = {nomeAluno.getText(), raAluno.getText(), curso.getSelectedItem(), btn_3.getText(), uf.getSelectedItem(), cpf.getText(), tell.getText(), dataNascismento.getText()};
             tbalunos.addRow(dados3);
@@ -588,7 +597,7 @@ public class NewJFrame extends javax.swing.JFrame {
             municipio.setText("");
             curso.setSelectedItem(" ");
             campus.setSelectedItem("Selecione um Campus");
-            uf.setSelectedItem(" ");
+            uf.setSelectedItem("	");
             JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar aluno, tente novamente.");
@@ -618,7 +627,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 municipio.setText("");
                 curso.setSelectedItem(" ");
                 campus.setSelectedItem("Selecione um Campus");
-                uf.setSelectedItem(" ");
+                uf.setSelectedItem("	");
                 JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
             } else if (i == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "Nenhuma alteração feita.");
@@ -680,7 +689,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     municipio.setText("");
                     curso.setSelectedItem(" ");
                     campus.setSelectedItem("Selecione um Campus");
-                    uf.setSelectedItem(" ");
+                    uf.setSelectedItem("	");
                 } else if (i == JOptionPane.NO_OPTION) {
                     JOptionPane.showMessageDialog(null, "Nenhuma alteração feita.");
                 } else if (i == JOptionPane.CANCEL_OPTION) {
