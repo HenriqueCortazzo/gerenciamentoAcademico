@@ -4,6 +4,8 @@
  */
 package projetounifg;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MatheusWP
@@ -72,6 +74,7 @@ public class faltaAlunos extends javax.swing.JFrame {
         verFalta.setForeground(java.awt.Color.black);
         verFalta.setText("Ver Faltas");
         verFalta.setBorder(null);
+        verFalta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         verFalta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verFaltaActionPerformed(evt);
@@ -95,6 +98,7 @@ public class faltaAlunos extends javax.swing.JFrame {
         adicionarFalta.setForeground(java.awt.Color.black);
         adicionarFalta.setText("Adicionar Faltas");
         adicionarFalta.setBorder(null);
+        adicionarFalta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         adicionarFalta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarFaltaActionPerformed(evt);
@@ -211,6 +215,9 @@ public class faltaAlunos extends javax.swing.JFrame {
     }//GEN-LAST:event_ra2ActionPerformed
 
     private void verFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFaltaActionPerformed
+          if (receberFalta1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Não há faltas atribuídas.");
+        }
         faltasAtribuidas verTodasFaltas = new faltasAtribuidas();
         String todasFaltas = resultadoGeral.getText();
         int numeroTotalFaltas = Integer.parseInt(todasFaltas);
@@ -219,12 +226,12 @@ public class faltaAlunos extends javax.swing.JFrame {
         resultadoGeral.setText(resultado);
         receberFalta1.setText("");
         resultadoGeral.setText("");
-
-        
-       
     }//GEN-LAST:event_verFaltaActionPerformed
 
     private void adicionarFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarFaltaActionPerformed
+        if (receberFalta1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Não foi possível calcular a média do aluno, tente novamente.");
+        }
         faltasAtribuidas totalFaltas = new faltasAtribuidas();
         String nFaltas = receberFalta1.getText();
         int numeroFaltas = Integer.parseInt(nFaltas);
