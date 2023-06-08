@@ -4,6 +4,7 @@
  */
 package projetounifg;
 
+import javax.swing.JOptionPane;
 import projetounifg.notas;
 
 /**
@@ -89,6 +90,7 @@ public class notaAlunos extends javax.swing.JFrame {
         gerarBoletim.setForeground(java.awt.Color.black);
         gerarBoletim.setText("Gerar Boletim");
         gerarBoletim.setBorder(null);
+        gerarBoletim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gerarBoletim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gerarBoletimActionPerformed(evt);
@@ -154,6 +156,7 @@ public class notaAlunos extends javax.swing.JFrame {
         gerarBoletim1.setForeground(java.awt.Color.black);
         gerarBoletim1.setText("Salvar Notas");
         gerarBoletim1.setBorder(null);
+        gerarBoletim1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gerarBoletim1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gerarBoletim1ActionPerformed(evt);
@@ -285,15 +288,13 @@ public class notaAlunos extends javax.swing.JFrame {
     }//GEN-LAST:event_raActionPerformed
 
     private void nomeDoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeDoAlunoActionPerformed
-//        if (nomeDoAluno.equals("") || ra.equals("")) {
-//            nomeDoAluno.requestFocus();
-//        } else {
-//            nota1.requestFocus();
-//        }
 
     }//GEN-LAST:event_nomeDoAlunoActionPerformed
 
     private void gerarBoletimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarBoletimActionPerformed
+        if (nota1.getText().equals("   ") || nota2.getText().equals("   ") || nota3.getText().equals("   ") || nota4.getText().equals("   ")) {
+            JOptionPane.showMessageDialog(null, "Não foi possível calcular a média do aluno, tente novamente.");
+        }
         notas method = new notas();
         double primeiraNota = Double.parseDouble(nota1.getText());
         double segundaNota = Double.parseDouble(nota2.getText());
