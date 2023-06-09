@@ -300,18 +300,6 @@ public class paginaLogin extends javax.swing.JFrame {
         } }catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "formularioLogin"+erro);
         }
-
-//        if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
-//            JOptionPane.showMessageDialog(null,
-//                    "Seja bem vindo, " + userAcess.getText() + "! \nEstamos inciando o sistema");
-//            new NewJFrame().setVisible(true);
-//            dispose();
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Usuário não encontrado, tente novamente.");
-//            userAcess.setText("");
-//            passwordAcess.setText("");
-//            userAcess.requestFocus();
-//        }
     }// GEN-LAST:event_loginAutActionPerformed
 
     private void rememberPasswordActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rememberPasswordActionPerformed
@@ -323,14 +311,6 @@ public class paginaLogin extends javax.swing.JFrame {
     }// GEN-LAST:event_loginAutMouseClicked
 
     private void rememberPasswordMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_rememberPasswordMouseClicked
-        if (rememberPassword.isSelected() && userAcess.getText().equals("Matheus")
-                && passwordAcess.getText().equals("admin")) {
-            JOptionPane.showMessageDialog(null, "Salvaremos seus dados.");
-        } else {
-            // precisa encontrar uma forma de desabilitar o botão.
-            rememberPassword.isSelected();
-            JOptionPane.showMessageDialog(null, "Erro");
-        }
     }// GEN-LAST:event_rememberPasswordMouseClicked
 
     private void userAcessKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_userAcessKeyPressed
@@ -342,6 +322,8 @@ public class paginaLogin extends javax.swing.JFrame {
     private void passwordAcessKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_passwordAcessKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
+            try {
+
             String usuario, senha;
 
             usuario = userAcess.getText();
@@ -350,15 +332,20 @@ public class paginaLogin extends javax.swing.JFrame {
             Usuario usuario_DAO = new Usuario();
             usuario_DAO.setNome(usuario);
             usuario_DAO.setSenha(senha);
-//            if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
-//                new NewJFrame().setVisible(true);
-//                dispose();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Usuário não encontrado, tente novamente.");
-//                userAcess.setText("");
-//                passwordAcess.setText("");
-//                userAcess.requestFocus();
-//            }
+            
+            usuario_DAO userDAO = new usuario_DAO();
+            ResultSet resultadoDAO = userDAO.autenticarUsuario(usuario_DAO);
+            
+            if(resultadoDAO.next()) {
+                NewJFrame telaPrincipal = new NewJFrame();
+                telaPrincipal.setVisible(true);
+                dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválida");
+        } }catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "formularioLogin"+erro);
+        }
         }
     }// GEN-LAST:event_passwordAcessKeyPressed
 
