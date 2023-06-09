@@ -4,9 +4,16 @@
  */
 package projetounifg;
 
+import userActions.Usuario;
+import java.sql.ResultSet;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-
+import java.sql.SQLException;
+import projetounifg.NewJFrame;
+import projetounifg.telaCadastro;
+import userActions.Usuario;
+import userActions.usuario_DAO;
+import userActions.usuario_DAO;
 /**
  *
  * @author MatheusWP
@@ -20,7 +27,8 @@ public class paginaLogin extends javax.swing.JFrame {
         initComponents();
         userAcess.setBackground(new java.awt.Color(0, 0, 0, 1));
         passwordAcess.setBackground(new java.awt.Color(0, 0, 0, 1));
-;    }
+        ;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +56,6 @@ public class paginaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setIconImages(null);
 
         jPanel2.setBackground(new java.awt.Color(25, 118, 225));
 
@@ -260,10 +267,6 @@ public class paginaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void disabled1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_disabled1MouseClicked
-        // TODO add your handling code here:
-    }// GEN-LAST:event_disabled1MouseClicked
-
     private void passwordAcessActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_passwordAcessActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_passwordAcessActionPerformed
@@ -273,18 +276,42 @@ public class paginaLogin extends javax.swing.JFrame {
     }// GEN-LAST:event_userAcessActionPerformed
 
     private void loginAutActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loginAutActionPerformed
+        try {
 
-        if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
-            JOptionPane.showMessageDialog(null,
-                    "Seja bem vindo, " + userAcess.getText() + "! \nEstamos inciando o sistema");
-            new NewJFrame().setVisible(true);
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuário não encontrado, tente novamente.");
-            userAcess.setText("");
-            passwordAcess.setText("");
-            userAcess.requestFocus();
+            String usuario, senha;
+
+            usuario = userAcess.getText();
+            senha = passwordAcess.getText();
+
+            Usuario usuario_DAO = new Usuario();
+            usuario_DAO.setNome(usuario);
+            usuario_DAO.setSenha(senha);
+            
+            usuario_DAO userDAO = new usuario_DAO();
+            ResultSet resultadoDAO = userDAO.autenticarUsuario(usuario_DAO);
+            
+            if(resultadoDAO.next()) {
+                NewJFrame telaPrincipal = new NewJFrame();
+                telaPrincipal.setVisible(true);
+                dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválida");
+        } }catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "formularioLogin"+erro);
         }
+
+//        if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
+//            JOptionPane.showMessageDialog(null,
+//                    "Seja bem vindo, " + userAcess.getText() + "! \nEstamos inciando o sistema");
+//            new NewJFrame().setVisible(true);
+//            dispose();
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Usuário não encontrado, tente novamente.");
+//            userAcess.setText("");
+//            passwordAcess.setText("");
+//            userAcess.requestFocus();
+//        }
     }// GEN-LAST:event_loginAutActionPerformed
 
     private void rememberPasswordActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rememberPasswordActionPerformed
@@ -314,15 +341,24 @@ public class paginaLogin extends javax.swing.JFrame {
 
     private void passwordAcessKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_passwordAcessKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
-                new NewJFrame().setVisible(true);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuário não encontrado, tente novamente.");
-                userAcess.setText("");
-                passwordAcess.setText("");
-                userAcess.requestFocus();
-            }
+
+            String usuario, senha;
+
+            usuario = userAcess.getText();
+            senha = passwordAcess.getText();
+
+            Usuario usuario_DAO = new Usuario();
+            usuario_DAO.setNome(usuario);
+            usuario_DAO.setSenha(senha);
+//            if (userAcess.getText().equals("Matheus") && passwordAcess.getText().equals("admin")) {
+//                new NewJFrame().setVisible(true);
+//                dispose();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Usuário não encontrado, tente novamente.");
+//                userAcess.setText("");
+//                passwordAcess.setText("");
+//                userAcess.requestFocus();
+//            }
         }
     }// GEN-LAST:event_passwordAcessKeyPressed
 
