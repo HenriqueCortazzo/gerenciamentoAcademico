@@ -5,7 +5,14 @@
 package projetounifg;
 
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import userActions.Usuario;
+import userActions.usuarioCadastroDAO;
+import userActions.usuario_DAO;
 
 /**
  *
@@ -35,11 +42,11 @@ public class telaCadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        termos = new javax.swing.JCheckBox();
         loginAut = new javax.swing.JButton();
         newAcess = new javax.swing.JTextField();
-        confirmPassword = new javax.swing.JTextField();
-        newPassword = new javax.swing.JTextField();
+        confirmPassword = new javax.swing.JPasswordField();
+        newPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,10 +75,15 @@ public class telaCadastro extends javax.swing.JFrame {
         jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setText("Confirme a senha:");
 
-        jCheckBox1.setBackground(new java.awt.Color(25, 118, 225));
-        jCheckBox1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        jCheckBox1.setForeground(java.awt.Color.white);
-        jCheckBox1.setText("Aceito os Termos de condição");
+        termos.setBackground(new java.awt.Color(25, 118, 225));
+        termos.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        termos.setForeground(java.awt.Color.white);
+        termos.setText("Aceito os Termos de condição");
+        termos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                termosActionPerformed(evt);
+            }
+        });
 
         loginAut.setBackground(java.awt.Color.white);
         loginAut.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
@@ -110,15 +122,7 @@ public class telaCadastro extends javax.swing.JFrame {
         });
 
         confirmPassword.setBackground(java.awt.Color.white);
-        confirmPassword.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         confirmPassword.setForeground(java.awt.Color.black);
-        confirmPassword.setToolTipText("");
-        confirmPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10));
-        confirmPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmPasswordActionPerformed(evt);
-            }
-        });
         confirmPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 confirmPasswordKeyPressed(evt);
@@ -126,9 +130,7 @@ public class telaCadastro extends javax.swing.JFrame {
         });
 
         newPassword.setBackground(java.awt.Color.white);
-        newPassword.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         newPassword.setForeground(java.awt.Color.black);
-        newPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10));
         newPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newPasswordActionPerformed(evt);
@@ -150,7 +152,7 @@ public class telaCadastro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jCheckBox1))
+                                .addComponent(termos))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addComponent(loginAut, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,16 +163,16 @@ public class telaCadastro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(confirmPassword, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(newPassword, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(confirmPassword)
-                            .addComponent(newAcess))))
+                            .addComponent(newAcess)
+                            .addComponent(newPassword))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,15 +189,15 @@ public class telaCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jCheckBox1)
+                .addComponent(confirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(termos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(loginAut, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addComponent(loginAut, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addGap(13, 13, 13))
         );
 
@@ -214,55 +216,68 @@ public class telaCadastro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmPasswordKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (newAcess.getText().equals("") && newPassword.getText().equals("") && confirmPassword.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Usuário não cadastrado, tente novamente.");
-                newAcess.setText("");
-                newPassword.setText("");
-                confirmPassword.setText("");
-                newAcess.requestFocus();
-            } else {
-                new paginaLogin().setVisible(true);
-                dispose();
-            }
-        }
-    }//GEN-LAST:event_confirmPasswordKeyPressed
-
-    private void confirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmPasswordActionPerformed
-
     private void loginAutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginAutKeyPressed
 //
     }//GEN-LAST:event_loginAutKeyPressed
 
     private void loginAutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAutActionPerformed
-        if (newAcess.getText().equals("") && newPassword.getText().equals("") && confirmPassword.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Usuário não cadastrado, tente novamente.");
-            newAcess.setText("");
-            newPassword.setText("");
-            confirmPassword.setText("");
-            newAcess.requestFocus();
+        if (termos.isSelected()) {
+            String usuario, senha, confSenha;
+
+            usuario = newAcess.getText();
+            senha = newPassword.getText();
+            confSenha = confirmPassword.getText();
+
+            if (usuario.length() > 5 && senha.length() > 5) {
+                usuarioCadastroDAO CadastroUserDAO = new usuarioCadastroDAO();
+
+                boolean usuarioExistente = CadastroUserDAO.UserVerificationExisting(usuario);
+
+                if (usuarioExistente) {
+                    JOptionPane.showMessageDialog(null, "Nome de Usuário já cadastrado. Por favor, escolha outro nome de usuário.");
+                    newAcess.setText("");
+                    newPassword.setText("");
+                    confirmPassword.setText("");
+                    newAcess.requestFocus();
+                } else {
+                    Usuario usuarioCadastroDAO = new Usuario();
+                    usuarioCadastroDAO.setNome(usuario);
+                    usuarioCadastroDAO.setSenha(senha);
+                    usuarioCadastroDAO.setConfSenha(confSenha);
+
+                    int resultadoDAO = CadastroUserDAO.cadastrarUsuario(usuarioCadastroDAO);
+
+                    if (resultadoDAO > 0 && senha.equals(confSenha)) {
+                        JOptionPane.showMessageDialog(null, "Informamos que ao aceitar os Termos de Condições as informações de usuário ficarão salvas em um banco de dados.");
+                        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+                        paginaLogin telaLogin = new paginaLogin();
+                        telaLogin.setVisible(true);
+                        dispose();
+                    } else {
+                        newAcess.setText("");
+                        newPassword.setText("");
+                        confirmPassword.setText("");
+                        newAcess.requestFocus();
+                        JOptionPane.showMessageDialog(null, "Falha ao cadastrar usuário");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "O nome de usuário e a senha devem ter pelo menos 6 caracteres");
+                newAcess.setText("");
+                newPassword.setText("");
+                confirmPassword.setText("");
+                newAcess.requestFocus();
+            }
         } else {
-            new paginaLogin().setVisible(true);
-            dispose();
+            JOptionPane.showMessageDialog(null, "É necessário aceitar os Termos de Condições para continuar.");
         }
+
+
     }//GEN-LAST:event_loginAutActionPerformed
 
     private void loginAutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginAutMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_loginAutMouseClicked
-
-    private void newPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newPasswordActionPerformed
-
-    private void newPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPasswordKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            confirmPassword.requestFocus();
-        }
-    }//GEN-LAST:event_newPasswordKeyPressed
 
     private void newAcessKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newAcessKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -273,6 +288,76 @@ public class telaCadastro extends javax.swing.JFrame {
     private void newAcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAcessActionPerformed
 
     }//GEN-LAST:event_newAcessActionPerformed
+
+    private void termosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_termosActionPerformed
+
+    }//GEN-LAST:event_termosActionPerformed
+
+    private void newPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordActionPerformed
+
+    }//GEN-LAST:event_newPasswordActionPerformed
+
+    private void newPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            confirmPassword.requestFocus();
+        }
+    }//GEN-LAST:event_newPasswordKeyPressed
+
+    private void confirmPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (termos.isSelected()) {
+                String usuario, senha, confSenha;
+
+                usuario = newAcess.getText();
+                senha = newPassword.getText();
+                confSenha = confirmPassword.getText();
+
+                if (usuario.length() > 5 && senha.length() > 5) {
+                    usuarioCadastroDAO CadastroUserDAO = new usuarioCadastroDAO();
+
+                    boolean usuarioExistente = CadastroUserDAO.UserVerificationExisting(usuario);
+
+                    if (usuarioExistente) {
+                        JOptionPane.showMessageDialog(null, "Nome de Usuário já cadastrado. Por favor, escolha outro nome de usuário.");
+                        newAcess.setText("");
+                        newPassword.setText("");
+                        confirmPassword.setText("");
+                        newAcess.requestFocus();
+                    } else {
+                        Usuario usuarioCadastroDAO = new Usuario();
+                        usuarioCadastroDAO.setNome(usuario);
+                        usuarioCadastroDAO.setSenha(senha);
+                        usuarioCadastroDAO.setConfSenha(confSenha);
+
+                        int resultadoDAO = CadastroUserDAO.cadastrarUsuario(usuarioCadastroDAO);
+
+                        if (resultadoDAO > 0 && senha.equals(confSenha)) {
+                            JOptionPane.showMessageDialog(null, "Informamos que ao aceitar os Termos de Condições as informações de usuário ficarão salvas em um banco de dados.");
+                            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+                            paginaLogin telaLogin = new paginaLogin();
+                            telaLogin.setVisible(true);
+                            dispose();
+                        } else {
+                            newAcess.setText("");
+                            newPassword.setText("");
+                            confirmPassword.setText("");
+                            newAcess.requestFocus();
+                            JOptionPane.showMessageDialog(null, "Falha ao cadastrar usuário");
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "O nome de usuário e a senha devem ter pelo menos 6 caracteres");
+                    newAcess.setText("");
+                    newPassword.setText("");
+                    confirmPassword.setText("");
+                    newAcess.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "É necessário aceitar os Termos de Condições para continuar.");
+            }
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -318,8 +403,7 @@ public class telaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField confirmPassword;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JPasswordField confirmPassword;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -328,6 +412,7 @@ public class telaCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginAut;
     private javax.swing.JTextField newAcess;
-    private javax.swing.JTextField newPassword;
+    private javax.swing.JPasswordField newPassword;
+    private javax.swing.JCheckBox termos;
     // End of variables declaration//GEN-END:variables
 }
