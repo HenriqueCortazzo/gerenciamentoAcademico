@@ -11,6 +11,7 @@ package userActions;
 public class Usuario {
     private String nome;
     private String senha;
+    private String confSenha;
 
     /**
      * @return the nome
@@ -38,5 +39,18 @@ public class Usuario {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    /**
+     * @return the confSenha
+     */
+    public String getConfSenha() {
+        return confSenha;
+    }
+
+    /**
+     * @param confSenha the confSenha to set
+     */
+    public void setConfSenha(String confSenha) {
+        this.confSenha = confSenha;
     }
 }
