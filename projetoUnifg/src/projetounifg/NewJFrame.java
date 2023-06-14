@@ -489,15 +489,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tbAlunosKeyPressed
 
     private void tbAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAlunosMouseClicked
-        int linhaSelected = tbAlunos.getSelectedRow();
-        nomeAluno.setText(tbAlunos.getValueAt(linhaSelected, 0).toString());
-        raAluno.setText(tbAlunos.getValueAt(linhaSelected, 1).toString());
-        curso.setSelectedItem(tbAlunos.getValueAt(linhaSelected, 2).toString());
-
-        tell.setText(tbAlunos.getValueAt(linhaSelected, 6).toString());
-        dataNascismento.setText(tbAlunos.getValueAt(linhaSelected, 7).toString());
-        cpf.setText((tbAlunos.getValueAt(linhaSelected, 5).toString()));
-        uf.setSelectedItem(tbAlunos.getValueAt(linhaSelected, 4).toString());
+        carregarDados();
     }//GEN-LAST:event_tbAlunosMouseClicked
 
     private void faltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faltasActionPerformed
@@ -548,8 +540,6 @@ public class NewJFrame extends javax.swing.JFrame {
                     aluno1.getMunicipio(),
                     aluno1.getCpf(),
                     aluno1.getPeriodo1(),
-                    //                    aluno1.getPeriodo2(),
-                    //                    aluno1.getPeriodo3(),
                     aluno1.getCampus(),
                     aluno1.getUf()
                 };
@@ -605,8 +595,6 @@ public class NewJFrame extends javax.swing.JFrame {
             alunos.setMunicipio(municipio);
             alunos.setCpf(cpf);
             alunos.setPeriodo1(periodo1);
-            alunos.setPeriodo2(periodo2);
-            alunos.setPeriodo3(periodo3);
             alunos.setCampus(campus);
             alunos.setUf(uf);
 
@@ -614,48 +602,52 @@ public class NewJFrame extends javax.swing.JFrame {
             alunosDAO.cadastrarAluno(alunos);;
             listarDados();
     }//GEN-LAST:event_cadastrarActionPerformed
+        nomeAluno.setText("");
+        raAluno.setText("");
+        this.curso.setSelectedItem("");
+        btn_1.setSelected(false);
+        btn_2.setSelected(false);
+        btn_3.setSelected(false);
+        this.cpf.setText("");
+        this.tell.setText("");
+        dataNascismento.setText("");
+        this.municipio.setText("");
+        this.curso.setSelectedItem(" ");
+        this.campus.setSelectedItem("Selecione um Campus");
+        this.uf.setSelectedItem("	");
     }
+    
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-        if (tbAlunos.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione um Aluno para exclusão.");
-        } else if (tbAlunos.getSelectedRow() != -1) {
-            int i = JOptionPane.showConfirmDialog(
-                    null,
-                    "Deseja realmente Excluir o aluno?"
-            );
-            if (i == JOptionPane.YES_OPTION) {
-                DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
-                tbalunos.removeRow(tbAlunos.getSelectedRow());
-                nomeAluno.setText("");
-                raAluno.setText("");
-                curso.setSelectedItem("");
-                btn_1.setSelected(false);
-                btn_2.setSelected(false);
-                btn_3.setSelected(false);
-                cpf.setText("");
-                tell.setText("");
-                dataNascismento.setText("");
-                municipio.setText("");
-                curso.setSelectedItem(" ");
-                campus.setSelectedItem("Selecione um Campus");
-                uf.setSelectedItem("	");
-                JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
-            } else if (i == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Nenhuma alteração feita.");
-
-            } else if (i == JOptionPane.CANCEL_OPTION) {
-                JOptionPane.showMessageDialog(null, "Houve um cancelamento na operação.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Selecione um Aluno para exclusão.");
-            }
-
-        }
+        excluirAluno();
+        listarDados();
+        nomeAluno.setText("");
+        raAluno.setText("");
+        curso.setSelectedItem("");
+        btn_1.setSelected(false);
+        btn_2.setSelected(false);
+        btn_3.setSelected(false);
+        cpf.setText("");
+        tell.setText("");
+        dataNascismento.setText("");
+        municipio.setText("");
+        curso.setSelectedItem(" ");
+        campus.setSelectedItem("Selecione um Campus");
+        uf.setSelectedItem("	");
     }//GEN-LAST:event_excluirActionPerformed
 
+    private void excluirAluno() {
+        String ra = raAluno.getText();
+
+        SIstemaCadastro.Aluno alunos = new Aluno();
+        alunos.setRa(ra);
+        SIstemaCadastro.AlunosDAO alunosDAO = new AlunosDAO();
+        alunosDAO.excluirDados(alunos);
+
+    }
+
     private void editarDados() throws SQLException {
-        String  nome, ra, curso, notas, faltas, dataNascimento, tell, municipio, uf, cpf, periodo1, periodo2, periodo3, campus;
-        
-        
+        String nome, ra, curso, notas, faltas, dataNascimento, tell, municipio, uf, cpf, periodo1, periodo2, periodo3, campus;
+
         nome = nomeAluno.getText();
         ra = raAluno.getText();
         curso = (String) this.curso.getSelectedItem();
@@ -669,91 +661,95 @@ public class NewJFrame extends javax.swing.JFrame {
         campus = (String) this.campus.getSelectedItem();
         municipio = this.municipio.getText();
 
-        Aluno alunos = new Aluno();
-        alunos.setNome(nome);
-        alunos.setRa(ra);
-        alunos.setCurso(curso);
-        alunos.setData(dataNascimento);
-        alunos.setTelefone(tell);
-        alunos.setMunicipio(municipio);
-        alunos.setCpf(cpf);
-        alunos.setPeriodo1(periodo1);
-        alunos.setPeriodo2(periodo2);
-        alunos.setPeriodo3(periodo3);
-        alunos.setCampus(campus);
-        alunos.setUf(uf);
+        boolean primeiroTurno = btn_1.isSelected();
+        boolean segundoTurno = btn_2.isSelected();
+        boolean terceiroTurno = btn_3.isSelected();
 
-        SIstemaCadastro.AlunosDAO alunosDAO = new AlunosDAO();
-        alunosDAO.editarDados(alunos);
+        if (nomeAluno.getText().equals("") || raAluno.getText().equals("        ") || this.cpf.getText().equals("   .   .   -  ") || dataNascismento.getText().equals("  /  /    ")) {
+            JOptionPane.showMessageDialog(null, "Não foi possível editar dados do aluno, tente novamente.");
+            nomeAluno.requestFocus();
+        } else if (this.curso.getSelectedItem().equals(" ") || this.uf.getSelectedItem().equals("	") || this.campus.getSelectedItem().equals("Selecione um Campus")) {
+            JOptionPane.showMessageDialog(null, "Não foi possível editar dados do  o aluno, tente novamente.");
+            this.curso.requestFocus();
+        } else if (this.tell.getText().equals("(  )       -") || this.municipio.getText().equals("            ")) {
+            JOptionPane.showMessageDialog(null, "Não foi possível editar dados do  o aluno, tente novamente.");
+            this.curso.requestFocus();
 
+        } else if (primeiroTurno == false && segundoTurno == false && terceiroTurno == false) {
+            JOptionPane.showMessageDialog(null, "Não foi possível editar dados do  o aluno, tente novamente.");
+        } else {
+
+            Aluno alunos = new Aluno();
+            alunos.setNome(nome);
+            alunos.setRa(ra);
+            alunos.setCurso(curso);
+            alunos.setData(dataNascimento);
+            alunos.setTelefone(tell);
+            alunos.setMunicipio(municipio);
+            alunos.setCpf(cpf);
+            alunos.setPeriodo1(periodo1);
+            alunos.setPeriodo2(periodo2);
+            alunos.setPeriodo3(periodo3);
+            alunos.setCampus(campus);
+            alunos.setUf(uf);
+
+            SIstemaCadastro.AlunosDAO alunosDAO = new AlunosDAO();
+            alunosDAO.editarDados(alunos);
+        }
     }
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
 
         try {
             editarDados();
+            nomeAluno.setText("");
+            raAluno.setText("");
+            curso.setSelectedItem("");
+            btn_1.setSelected(false);
+            btn_2.setSelected(false);
+            btn_3.setSelected(false);
+            cpf.setText("");
+            tell.setText("");
+            dataNascismento.setText("");
+            municipio.setText("");
+            curso.setSelectedItem(" ");
+            campus.setSelectedItem("Selecione um Campus");
+            uf.setSelectedItem("	");
         } catch (SQLException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         listarDados();
-        
-        int id_aluno;
-        boolean turnoMat = btn_1.isSelected();
-        boolean turnoVesp = btn_2.isSelected();
-        boolean turnoNot = btn_3.isSelected();
-        if (tbAlunos.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione um Aluno para edição.");
-        } else if (tbAlunos.getSelectedRow() != -1) {
-            if (curso.getSelectedItem().equals(" ") || uf.getSelectedItem().equals(" ") || campus.getSelectedItem().equals("Selecione um Campus")) {
-                JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
-            } else if (dataNascismento.equals("  /  /    ") || municipio.equals("            ")) {
-                JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
-            } else if (turnoMat == false && turnoVesp == false && turnoNot == false) {
-                JOptionPane.showMessageDialog(null, "Existem dados ainda não preenchidos, tente novamente.");
-            } else {
-                int i = JOptionPane.showConfirmDialog(
-                        null,
-                        "Deseja realmente editar dados do aluno?"
-                );
-                if (i == JOptionPane.YES_OPTION) {
-                    DefaultTableModel tbalunos = (DefaultTableModel) tbAlunos.getModel();
-                    tbAlunos.setValueAt(nomeAluno.getText(), tbAlunos.getSelectedRow(), 0);
-                    tbAlunos.setValueAt(raAluno.getText(), tbAlunos.getSelectedRow(), 1);
-                    tbAlunos.setValueAt(curso.getSelectedItem(), tbAlunos.getSelectedRow(), 2);
-                    tbAlunos.setValueAt(uf.getSelectedItem(), tbAlunos.getSelectedRow(), 4);
-                    tbAlunos.setValueAt(cpf.getText(), tbAlunos.getSelectedRow(), 5);
-                    tbAlunos.setValueAt(tell.getText(), tbAlunos.getSelectedRow(), 6);
-                    tbAlunos.setValueAt(dataNascismento.getText(), tbAlunos.getSelectedRow(), 7);
-                    if (turnoMat == true) {
-                        tbAlunos.setValueAt(btn_1.getText(), tbAlunos.getSelectedRow(), 3);
-                    } else if (turnoVesp == true) {
-                        tbAlunos.setValueAt(btn_2.getText(), tbAlunos.getSelectedRow(), 3);
-                    } else if (turnoNot == true) {
-                        tbAlunos.setValueAt(btn_3.getText(), tbAlunos.getSelectedRow(), 3);
-
-                        JOptionPane.showMessageDialog(null, "Dados alterados com sucesso.");
-                    }
-                    nomeAluno.setText("");
-                    raAluno.setText("");
-                    curso.setSelectedItem("");
-                    btn_1.setSelected(false);
-                    btn_2.setSelected(false);
-                    btn_3.setSelected(false);
-                    cpf.setText("");
-                    tell.setText("");
-                    dataNascismento.setText("");
-                    municipio.setText("");
-                    curso.setSelectedItem(" ");
-                    campus.setSelectedItem("Selecione um Campus");
-                    uf.setSelectedItem("	");
-                } else if (i == JOptionPane.NO_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Nenhuma alteração feita.");
-                } else if (i == JOptionPane.CANCEL_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Houve um cancelamento na operação.");
-                }
-            }
-        }
     }//GEN-LAST:event_editarActionPerformed
+    
+    private void carregarDados() {
+        int set = tbAlunos.getSelectedRow();
+        String verificarRadio = (String) tbAlunos.getModel().getValueAt(set, 7);
+        raAluno.setText(tbAlunos.getModel().getValueAt(set, 1).toString());
+        nomeAluno.setText(tbAlunos.getModel().getValueAt(set, 0).toString());
+        dataNascismento.setText(tbAlunos.getModel().getValueAt(set, 3).toString());
+        cpf.setText(tbAlunos.getModel().getValueAt(set, 6).toString());
+        curso.setSelectedItem(tbAlunos.getModel().getValueAt(set, 2).toString());
+        campus.setSelectedItem(tbAlunos.getModel().getValueAt(set, 8).toString());
+        municipio.setText(tbAlunos.getModel().getValueAt(set, 5).toString());
+        tell.setText(tbAlunos.getModel().getValueAt(set, 4).toString());
+        uf.setSelectedItem(tbAlunos.getModel().getValueAt(set, 9).toString());
+
+        if (verificarRadio.equals("Matutino")) {
+            btn_1.setSelected(true);
+            btn_2.setSelected(false);
+            btn_3.setSelected(false);
+        } else if (verificarRadio.equals("Vespertino")) {
+            btn_1.setSelected(false);
+            btn_2.setSelected(true);
+            btn_3.setSelected(false);
+        } else if (verificarRadio.equals("Noturno")) {
+            btn_1.setSelected(false);
+            btn_2.setSelected(false);
+            btn_3.setSelected(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "erro");
+        }
+    }
 
     private void btn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_2ActionPerformed
         btn_1.setSelected(false);
@@ -782,42 +778,9 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cursoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+ 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+ 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NewJFrame().setVisible(true);
