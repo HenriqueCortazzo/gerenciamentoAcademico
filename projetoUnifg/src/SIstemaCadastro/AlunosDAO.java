@@ -86,4 +86,36 @@ public class AlunosDAO {
 
     }
 
+    public void editarDados(Aluno aluno) throws SQLException {
+        conn = (Connection) new ConexaoDAO().conectBD();
+
+        try {
+            String sql = "UPDATE sistemaCadastro SET id_aluno=?, nome_Aluno=?, ra_Aluno=?, curso=?, data_Nascimento=?, tell=?, municipio=?, cpf=?, periodo=?, campus=?, uf=? WHERE id_aluno=?";
+            PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
+
+            preparar.setInt(1, aluno.getId());
+            preparar.setString(2, aluno.getNome());
+            preparar.setString(3, aluno.getRa());
+            preparar.setString(4, aluno.getCurso());
+            preparar.setString(5, aluno.getData());
+            preparar.setString(6, aluno.getTelefone());
+            preparar.setString(7, aluno.getMunicipio());
+            preparar.setString(8, aluno.getCpf());
+            preparar.setString(9, aluno.getPeriodo1() + " " + aluno.getPeriodo2() + " " + aluno.getPeriodo3());
+            preparar.setString(10, aluno.getCampus());
+            preparar.setString(11, aluno.getUf());
+            preparar.setInt(12, aluno.getId());
+
+            int resultado = preparar.executeUpdate();
+
+            if (resultado > 0) {
+                JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha ao alterar dados.");
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao editar aluno: " + erro.getMessage());
+        }
+    }
+
 }

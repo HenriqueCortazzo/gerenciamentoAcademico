@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  * @author MatheusWP
  */
 public class Aluno {
+    private int id;
     private String nome;
     private String ra;
     private String telefone;
@@ -208,5 +209,19 @@ public class Aluno {
      */
     public void setPeriodo3(String periodo3) {
         this.periodo3 = periodo3;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }
