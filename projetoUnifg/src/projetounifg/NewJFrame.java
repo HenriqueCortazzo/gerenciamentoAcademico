@@ -602,37 +602,13 @@ public class NewJFrame extends javax.swing.JFrame {
             alunosDAO.cadastrarAluno(alunos);;
             listarDados();
     }//GEN-LAST:event_cadastrarActionPerformed
-        nomeAluno.setText("");
-        raAluno.setText("");
-        this.curso.setSelectedItem("");
-        btn_1.setSelected(false);
-        btn_2.setSelected(false);
-        btn_3.setSelected(false);
-        this.cpf.setText("");
-        this.tell.setText("");
-        dataNascismento.setText("");
-        this.municipio.setText("");
-        this.curso.setSelectedItem(" ");
-        this.campus.setSelectedItem("Selecione um Campus");
-        this.uf.setSelectedItem("	");
+       limparCampos();
     }
-    
+
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
         excluirAluno();
         listarDados();
-        nomeAluno.setText("");
-        raAluno.setText("");
-        curso.setSelectedItem("");
-        btn_1.setSelected(false);
-        btn_2.setSelected(false);
-        btn_3.setSelected(false);
-        cpf.setText("");
-        tell.setText("");
-        dataNascismento.setText("");
-        municipio.setText("");
-        curso.setSelectedItem(" ");
-        campus.setSelectedItem("Selecione um Campus");
-        uf.setSelectedItem("	");
+        limparCampos();
     }//GEN-LAST:event_excluirActionPerformed
 
     private void excluirAluno() {
@@ -702,25 +678,29 @@ public class NewJFrame extends javax.swing.JFrame {
 
         try {
             editarDados();
-            nomeAluno.setText("");
-            raAluno.setText("");
-            curso.setSelectedItem("");
-            btn_1.setSelected(false);
-            btn_2.setSelected(false);
-            btn_3.setSelected(false);
-            cpf.setText("");
-            tell.setText("");
-            dataNascismento.setText("");
-            municipio.setText("");
-            curso.setSelectedItem(" ");
-            campus.setSelectedItem("Selecione um Campus");
-            uf.setSelectedItem("	");
+            limparCampos();
         } catch (SQLException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         listarDados();
     }//GEN-LAST:event_editarActionPerformed
-    
+
+    private void limparCampos() {
+        nomeAluno.setText("");
+        raAluno.setText("");
+        curso.setSelectedItem("");
+        btn_1.setSelected(false);
+        btn_2.setSelected(false);
+        btn_3.setSelected(false);
+        cpf.setText("");
+        tell.setText("");
+        dataNascismento.setText("");
+        municipio.setText("");
+        curso.setSelectedItem(" ");
+        campus.setSelectedItem("Selecione um Campus");
+        uf.setSelectedItem("	");
+    }
+
     private void carregarDados() {
         int set = tbAlunos.getSelectedRow();
         String verificarRadio = (String) tbAlunos.getModel().getValueAt(set, 7);
@@ -778,9 +758,8 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cursoActionPerformed
 
- 
     public static void main(String args[]) {
- 
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NewJFrame().setVisible(true);
