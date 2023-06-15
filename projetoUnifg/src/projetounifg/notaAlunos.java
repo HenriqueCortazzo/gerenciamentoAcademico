@@ -4,6 +4,8 @@
  */
 package projetounifg;
 
+import SIstemaCadastro.Aluno;
+import SIstemaCadastro.AlunosDAO;
 import javax.swing.JOptionPane;
 import projetounifg.notas;
 
@@ -283,6 +285,23 @@ public class notaAlunos extends javax.swing.JFrame {
         ra.setText(modelo.getRa());
     }
 
+    private void definirMedia() {
+        String nome = nomeDoAluno.getText();
+        String ra = this.ra.getText();
+        String resultado = resultadoMedia.getText();
+
+        if (resultado.equals("")) {
+            JOptionPane.showMessageDialog(null, "Não foi possível definir a média do aluno.\n Por favor, tente novamente.");
+        } else {
+            SIstemaCadastro.Aluno alunos = new Aluno();
+            alunos.setNome(nome);
+            alunos.setRa(ra);
+
+            SIstemaCadastro.AlunosDAO alunosDAO = new AlunosDAO();
+            alunosDAO.definirMedia(alunos);
+        }
+    }
+
     private void raActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_raActionPerformed
@@ -303,7 +322,7 @@ public class notaAlunos extends javax.swing.JFrame {
         double resultado = method.calcularNota(primeiraNota, segundaNota, terceiraNota, quartaNota);
         String novoResultado = Double.toString(resultado);
         resultadoMedia.setText(novoResultado);
-
+        
 
     }//GEN-LAST:event_gerarBoletimActionPerformed
 
@@ -312,7 +331,8 @@ public class notaAlunos extends javax.swing.JFrame {
     }//GEN-LAST:event_nota1ActionPerformed
 
     private void gerarBoletim1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarBoletim1ActionPerformed
-        // TODO add your handling code here:
+   definirMedia();
+   
     }//GEN-LAST:event_gerarBoletim1ActionPerformed
 
     /**

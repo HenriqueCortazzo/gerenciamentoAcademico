@@ -124,7 +124,7 @@ public class AlunosDAO {
             PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
 
             preparar.setString(1, aluno.getRa());
-            
+
             int resultado = preparar.executeUpdate();
 
             if (resultado > 0) {
@@ -136,7 +136,26 @@ public class AlunosDAO {
             JOptionPane.showMessageDialog(null, "Erro ao editar aluno: " + erro.getMessage());
         }
     }
-    
-    
+
+    public void definirMedia(Aluno aluno) {
+        conn = (Connection) new ConexaoDAO().conectBD();
+
+        try {
+            String sql = "INSERT INTO sistemaCadastro (nota) VALUES (?)";
+            PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
+            preparar.setDouble(1, aluno.getNota());
+            
+
+            int resultado = preparar.executeUpdate();
+
+            if (resultado > 0) {
+                JOptionPane.showMessageDialog(null, "Nota atribuída com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha ao atribuir nota.");
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Falha ao atribuir nota: " + erro.getMessage());
+        }
+    }
 
 }
