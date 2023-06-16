@@ -141,20 +141,26 @@ public class AlunosDAO {
         conn = (Connection) new ConexaoDAO().conectBD();
 
         try {
-            String sql = "INSERT INTO sistemaCadastro (nota) VALUES (?)";
+            String sql = "UPDATE sistemaCadastro SET nota = ? WHERE ra_aluno = ?";
             PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
             preparar.setDouble(1, aluno.getNota());
-            
+            preparar.setString(2, aluno.getRa());
+
+            String sql1 = "UPDATE sistemaCadastro SET status = ? WHERE ra_aluno = ?";
+            PreparedStatement preparar1 = (PreparedStatement) conn.prepareStatement(sql1);
+            preparar1.setString(1, aluno.getStatus());
+            preparar1.setString(2, aluno.getRa());
 
             int resultado = preparar.executeUpdate();
+            int resultado1 = preparar1.executeUpdate();
 
-            if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Nota atribuída com sucesso!");
+            if (resultado > 0 && resultado1 > 0) {
+                JOptionPane.showMessageDialog(null, "Nota e status atribuídos com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(null, "Falha ao atribuir nota.");
+                JOptionPane.showMessageDialog(null, "Falha ao atribuir nota e status.");
             }
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Falha ao atribuir nota: " + erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Falha ao atribuir nota e status: " + erro.getMessage());
         }
     }
 
