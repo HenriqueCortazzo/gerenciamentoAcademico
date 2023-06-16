@@ -25,7 +25,9 @@ public class Aluno {
     private String curso;
     private String uf;
     private String campus;
-
+    private double nota;
+    private int faltas;
+    private String status;
     //constructor
 //    public Aluno(String nome, String ra, String telefone, String data, String municipio, String cpf, String curso, boolean periodo1, boolean periodo2, boolean periodo3, String uf, String campus) {
 //        this.nome = nome;
@@ -223,5 +225,47 @@ public class Aluno {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the nota
+     */
+    public double getNota() {
+        return nota;
+    }
+
+    /**
+     * @param nota the nota to set
+     */
+    public void setNota(double nota) {
+        this.nota = nota;
+    }
+
+    /**
+     * @return the faltas
+     */
+    public int getFaltas() {
+        return faltas;
+    }
+
+    /**
+     * @param faltas the faltas to set
+     */
+    public void setFaltas(int faltas) {
+        this.faltas = faltas;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
