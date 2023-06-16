@@ -4,7 +4,11 @@
  */
 package projetounifg;
 
+import SIstemaCadastro.Aluno;
+import SIstemaCadastro.AlunosDAO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -39,12 +43,10 @@ public class faltaAlunos extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        verFalta = new javax.swing.JButton();
         ra2 = new javax.swing.JTextField();
         nomeDoAluno2 = new javax.swing.JTextField();
         adicionarFalta = new javax.swing.JButton();
-        resultadoGeral = new javax.swing.JTextField();
-        receberFalta1 = new javax.swing.JTextField();
+        receberFalta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,18 +70,6 @@ public class faltaAlunos extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setForeground(java.awt.Color.white);
         jLabel24.setText("Adicionar Faltas");
-
-        verFalta.setBackground(java.awt.Color.white);
-        verFalta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        verFalta.setForeground(java.awt.Color.black);
-        verFalta.setText("Ver Faltas");
-        verFalta.setBorder(null);
-        verFalta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        verFalta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verFaltaActionPerformed(evt);
-            }
-        });
 
         ra2.setBackground(java.awt.Color.white);
         ra2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -105,19 +95,11 @@ public class faltaAlunos extends javax.swing.JFrame {
             }
         });
 
-        resultadoGeral.setBackground(java.awt.Color.white);
-        resultadoGeral.setForeground(java.awt.Color.black);
-        resultadoGeral.addActionListener(new java.awt.event.ActionListener() {
+        receberFalta.setBackground(java.awt.Color.white);
+        receberFalta.setForeground(java.awt.Color.black);
+        receberFalta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resultadoGeralActionPerformed(evt);
-            }
-        });
-
-        receberFalta1.setBackground(java.awt.Color.white);
-        receberFalta1.setForeground(java.awt.Color.black);
-        receberFalta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                receberFalta1ActionPerformed(evt);
+                receberFaltaActionPerformed(evt);
             }
         });
 
@@ -136,25 +118,16 @@ public class faltaAlunos extends javax.swing.JFrame {
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ra2)
-                            .addComponent(nomeDoAluno2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
                         .addComponent(jLabel24)
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(verFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(resultadoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(receberFalta1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                                .addGap(35, 35, 35)
-                                .addComponent(adicionarFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(39, 39, 39)
+                        .addComponent(adicionarFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(receberFalta, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                    .addComponent(ra2)
+                    .addComponent(nomeDoAluno2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         jPanel4Layout.setVerticalGroup(
@@ -168,18 +141,18 @@ public class faltaAlunos extends javax.swing.JFrame {
                 .addComponent(nomeDoAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ra2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(adicionarFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(receberFalta1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(verFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resultadoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ra2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(adicionarFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(receberFalta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -192,7 +165,7 @@ public class faltaAlunos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,10 +176,10 @@ public class faltaAlunos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(416, 363));
+        setSize(new java.awt.Dimension(416, 317));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -214,40 +187,38 @@ public class faltaAlunos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ra2ActionPerformed
 
-    private void verFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFaltaActionPerformed
-          if (receberFalta1.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Não há faltas atribuídas.");
-        }
-        faltasAtribuidas verTodasFaltas = new faltasAtribuidas();
-        String todasFaltas = resultadoGeral.getText();
-        int numeroTotalFaltas = Integer.parseInt(todasFaltas);
-        int result = verTodasFaltas.verFaltas(numeroTotalFaltas);
-        String resultado = Integer.toString(result);
-        resultadoGeral.setText(resultado);
-        receberFalta1.setText("");
-        resultadoGeral.setText("");
-    }//GEN-LAST:event_verFaltaActionPerformed
-
     private void adicionarFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarFaltaActionPerformed
-        if (receberFalta1.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Não foi possível calcular a média do aluno, tente novamente.");
+        if (receberFalta.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não foi possível inserir a falta do aluno, tente novamente.");
+        } else {
+            definirFalta();
+            receberFalta.setText("");
         }
-        faltasAtribuidas totalFaltas = new faltasAtribuidas();
-        String nFaltas = receberFalta1.getText();
-        int numeroFaltas = Integer.parseInt(nFaltas);
-        int result = totalFaltas.adicionarFaltas(numeroFaltas);
-        String resultado = Integer.toString(result);
-        resultadoGeral.setText(resultado);
-        receberFalta1.setText("");
     }//GEN-LAST:event_adicionarFaltaActionPerformed
 
-    private void resultadoGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadoGeralActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resultadoGeralActionPerformed
+    private void definirFalta() {
 
-    private void receberFalta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receberFalta1ActionPerformed
+        String ra = this.ra2.getText();
+        String faltaAdicionada = receberFalta.getText();
+
+        if (faltaAdicionada.isEmpty() || ra.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não foi possível definir as faltas do aluno.\n Por favor, tente novamente.");
+        } else {
+            SIstemaCadastro.Aluno alunos = new Aluno();
+            alunos.setRa(ra);
+            alunos.setFaltas(Integer.parseInt(faltaAdicionada));
+            SIstemaCadastro.AlunosDAO alunosDAO = new AlunosDAO();
+            alunosDAO.definirFaltas(alunos);
+            JOptionPane.showMessageDialog(null, "Estamos te redirecionando para para página principal.");
+            dispose();
+            NewJFrame telaPrincipal = new NewJFrame();
+            telaPrincipal.setVisible(true);
+        }
+    }
+
+    private void receberFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receberFaltaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_receberFalta1ActionPerformed
+    }//GEN-LAST:event_receberFaltaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,8 +265,6 @@ public class faltaAlunos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField nomeDoAluno2;
     private javax.swing.JTextField ra2;
-    private javax.swing.JTextField receberFalta1;
-    private javax.swing.JTextField resultadoGeral;
-    private javax.swing.JButton verFalta;
+    private javax.swing.JTextField receberFalta;
     // End of variables declaration//GEN-END:variables
 }

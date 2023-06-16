@@ -164,4 +164,26 @@ public class AlunosDAO {
         }
     }
 
+    public void definirFaltas(Aluno aluno) {
+        conn = (Connection) new ConexaoDAO().conectBD();
+
+        try {
+
+            String sql = "UPDATE sistemaCadastro SET faltas = ? WHERE ra_aluno = ?";
+            PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
+            preparar.setInt(1, aluno.getFaltas());
+            preparar.setString(2, aluno.getRa());
+
+            int resultado = preparar.executeUpdate();
+
+            if (resultado > 0) {
+                JOptionPane.showMessageDialog(null, "Faltas atribuídas com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha ao atribuir faltas.");
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Falha ao atribuir nota e status: " + erro.getMessage());
+        }
+    }
+
 }
