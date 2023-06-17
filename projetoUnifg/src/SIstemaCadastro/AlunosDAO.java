@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import SIstemaCadastro.Aluno;
 import java.awt.List;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -74,6 +75,9 @@ public class AlunosDAO {
                 aluno.setPeriodo1(rs.getString("periodo"));
                 aluno.setCampus(rs.getString("campus"));
                 aluno.setUf(rs.getString("uf"));
+                aluno.setNota(rs.getDouble("nota"));
+                aluno.setFaltas(rs.getInt("faltas"));
+                aluno.setStatus(rs.getString("status"));
 
                 lista.add(aluno);
 
@@ -185,5 +189,5 @@ public class AlunosDAO {
             JOptionPane.showMessageDialog(null, "Falha ao atribuir nota e status: " + erro.getMessage());
         }
     }
-
+    
 }
