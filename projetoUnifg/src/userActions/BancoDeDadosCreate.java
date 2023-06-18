@@ -1,8 +1,8 @@
 package userActions;
 
-import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -18,10 +18,10 @@ public class BancoDeDadosCreate {
     String sql2 = "USE `sistemacadastro`";
 
     public void criarBancoDados() {
-        com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) new ConexaoDAO().conectBD();
+        Connection conn = new ConexaoDAO().conectBD();
         try {
-            PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
-            preparar.executeUpdate(sql);
+            PreparedStatement preparar = conn.prepareStatement(sql);
+            preparar.executeUpdate();
             preparar.executeUpdate(sql4);
             preparar.executeUpdate(sql2);
             preparar.executeUpdate(sql3);
@@ -32,3 +32,6 @@ public class BancoDeDadosCreate {
         }
     }
 }
+
+
+
