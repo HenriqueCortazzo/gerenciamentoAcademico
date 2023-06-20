@@ -90,35 +90,35 @@ public class AlunosDAO {
 
     }
 
-    public void editarDados(Aluno aluno) throws SQLException {
-        conn = (Connection) new ConexaoDAO().conectBD();
+   public void editarDados(Aluno aluno) throws SQLException {
+    conn = (Connection) new ConexaoDAO().conectBD();
 
-        try {
-            String sql = "UPDATE sistemaCadastro SET nome_Aluno=?, ra_Aluno=?, curso=?, data_Nascimento=?, tell=?, municipio=?, cpf=?, periodo=?, campus=?, uf=?";
-            PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
+    try {
+        String sql = "UPDATE sistemaCadastro SET nome_Aluno=?, ra_Aluno=?, curso=?, data_Nascimento=?, tell=?, municipio=?, cpf=?, periodo=?, campus=?, uf=? WHERE ra_Aluno = ?";
+        PreparedStatement preparar = (PreparedStatement) conn.prepareStatement(sql);
+        preparar.setString(1, aluno.getNome());
+        preparar.setString(2, aluno.getRa());
+        preparar.setString(3, aluno.getCurso());
+        preparar.setString(4, aluno.getData());
+        preparar.setString(5, aluno.getTelefone());
+        preparar.setString(6, aluno.getMunicipio());
+        preparar.setString(7, aluno.getCpf());
+        preparar.setString(8, aluno.getPeriodo1());
+        preparar.setString(9, aluno.getCampus());
+        preparar.setString(10, aluno.getUf());
+        preparar.setString(11, aluno.getRa());
 
-            preparar.setString(1, aluno.getNome());
-            preparar.setString(2, aluno.getRa());
-            preparar.setString(3, aluno.getCurso());
-            preparar.setString(4, aluno.getData());
-            preparar.setString(5, aluno.getTelefone());
-            preparar.setString(6, aluno.getMunicipio());
-            preparar.setString(7, aluno.getCpf());
-            preparar.setString(8, aluno.getPeriodo1());
-            preparar.setString(9, aluno.getCampus());
-            preparar.setString(10, aluno.getUf());
+        int resultado = preparar.executeUpdate();
 
-            int resultado = preparar.executeUpdate();
-
-            if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Falha ao alterar dados.");
-            }
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao editar aluno: " + erro.getMessage());
+        if (resultado > 0) {
+            JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha ao alterar dados.");
         }
+    } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null, "Erro ao editar aluno: " + erro.getMessage());
     }
+}
 
     public void excluirDados(Aluno aluno) {
         conn = (Connection) new ConexaoDAO().conectBD();
@@ -189,5 +189,5 @@ public class AlunosDAO {
             JOptionPane.showMessageDialog(null, "Falha ao atribuir nota e status: " + erro.getMessage());
         }
     }
-    
+
 }
