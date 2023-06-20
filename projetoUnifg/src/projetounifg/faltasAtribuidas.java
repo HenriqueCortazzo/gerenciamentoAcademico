@@ -22,19 +22,7 @@ public class faltasAtribuidas {
         return somaFaltas;
     }
 
-    public int verFaltas(int falta) {
-        int totalFaltas = falta;
-        int zero = 0;
-        if (falta >= 1) {
-            JOptionPane.showMessageDialog(null, "Este aluno possui um total de " + totalFaltas + " faltas.");
-        } else {
-            JOptionPane.showMessageDialog(null, "O numero de faltas é igual á " + zero + ".");
-        }
-        
-        
-        return 0;
-    }
-
+   
     /**
      * @return the nome
      */

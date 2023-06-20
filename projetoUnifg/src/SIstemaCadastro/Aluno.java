@@ -28,23 +28,6 @@ public class Aluno {
     private double nota;
     private int faltas;
     private String status;
-    //constructor
-//    public Aluno(String nome, String ra, String telefone, String data, String municipio, String cpf, String curso, boolean periodo1, boolean periodo2, boolean periodo3, String uf, String campus) {
-//        this.nome = nome;
-//        this.ra = ra;
-//        this.telefone = telefone;
-//        this.data = data;
-//        this.municipio = municipio;
-//        this.cpf = cpf;
-//        this.curso = curso;
-//        this.periodo1 = periodo1;
-//        this.periodo2 = periodo2;
-//        this.periodo3 = periodo3;
-//        this.campus = campus;
-//        this.uf = uf;
-//
-//    }
-
     /**
      * @return the nome
      */
