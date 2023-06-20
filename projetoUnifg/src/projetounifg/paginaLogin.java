@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
-import projetounifg.NewJFrame;
+import projetounifg.SistemaCadastroAlunos;
 import projetounifg.telaCadastro;
 import userActions.Usuario;
 import userActions.usuario_DAO;
@@ -296,7 +296,7 @@ public class paginaLogin extends javax.swing.JFrame {
                 int x = resultadoDAO.getInt("usuario_Id");
                 usuario_Id.setID(x);
                 System.out.println(x);
-                NewJFrame telaPrincipal = new NewJFrame();
+                SistemaCadastroAlunos telaPrincipal = new SistemaCadastroAlunos();
                 telaPrincipal.setVisible(true);
                 dispose();
             } else {
@@ -345,7 +345,7 @@ public class paginaLogin extends javax.swing.JFrame {
                 ResultSet resultadoDAO = userDAO.autenticarUsuario(usuario_DAO);
                 
                 if (resultadoDAO.next()) {
-                    NewJFrame telaPrincipal = new NewJFrame();
+                    SistemaCadastroAlunos telaPrincipal = new SistemaCadastroAlunos();
                     telaPrincipal.setVisible(true);
                     dispose();
                 } else {
@@ -363,7 +363,7 @@ public class paginaLogin extends javax.swing.JFrame {
     private void loginAutKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_loginAutKeyPressed
         if (rememberPassword.isSelected() && userAcess.getText().equals("admin")
                 && passwordAcess.getText().equals("admin")) {
-            new NewJFrame().setVisible(true);
+            new SistemaCadastroAlunos().setVisible(true);
             dispose();
         }
     }// GEN-LAST:event_loginAutKeyPressed

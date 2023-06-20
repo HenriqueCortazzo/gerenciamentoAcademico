@@ -315,7 +315,7 @@ public class notaAlunos extends javax.swing.JFrame {
     public void listarDados() {
         try {
             AlunosDAO aluno = new AlunosDAO();
-            NewJFrame tabela = new NewJFrame();
+            SistemaCadastroAlunos tabela = new SistemaCadastroAlunos();
             DefaultTableModel model = (DefaultTableModel) tabela.tbAlunos.getModel();
             model.setNumRows(0);
 
@@ -361,7 +361,7 @@ public class notaAlunos extends javax.swing.JFrame {
             alunosDAO.definirMedia(alunos);
             JOptionPane.showMessageDialog(null, "Estamos te redirecionando para para página principal.");
             dispose();
-            NewJFrame telaPrincipal = new NewJFrame();
+            SistemaCadastroAlunos telaPrincipal = new SistemaCadastroAlunos();
             telaPrincipal.setVisible(true);
             listarDados();
         }

@@ -211,7 +211,7 @@ public class faltaAlunos extends javax.swing.JFrame {
             alunosDAO.definirFaltas(alunos);
             JOptionPane.showMessageDialog(null, "Estamos te redirecionando para para página principal.");
             dispose();
-            NewJFrame telaPrincipal = new NewJFrame();
+            SistemaCadastroAlunos telaPrincipal = new SistemaCadastroAlunos();
             telaPrincipal.setVisible(true);
         }
     }
