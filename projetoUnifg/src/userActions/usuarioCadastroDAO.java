@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
 public class usuarioCadastroDAO {
 
     Connection conn;
-    
-     public boolean UserVerificationExisting(String usuario) {
-         conn = (Connection) new ConexaoDAO().conectBD();
+
+    public boolean UserVerificationExisting(String usuario) {
+        conn = (Connection) new ConexaoDAO().conectBD();
         boolean usuarioExistente = false;
 
         String sql = "SELECT COUNT(*) FROM usuario WHERE usuario = ?";
@@ -39,7 +39,6 @@ public class usuarioCadastroDAO {
         return usuarioExistente;
     }
 
-
     public int cadastrarUsuario(userActions.Usuario usuarioCadastroDAO) {
         conn = (Connection) new ConexaoDAO().conectBD();
         try {
@@ -49,9 +48,11 @@ public class usuarioCadastroDAO {
             preparar.setString(2, usuarioCadastroDAO.getSenha());
             preparar.setString(2, usuarioCadastroDAO.getConfSenha());
 
-            int resultado = preparar.executeUpdate();   
+            int resultado = preparar.executeUpdate();
             return resultado;
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "UsuarioCadastroDAO" + erro);
-        }return 0;
-}}
+        }
+        return 0;
+    }
+}
