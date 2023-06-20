@@ -14,6 +14,8 @@ import projetounifg.telaCadastro;
 import userActions.Usuario;
 import userActions.usuario_DAO;
 import userActions.usuario_DAO;
+import userActions.usuario_Id;
+
 /**
  *
  * @author MatheusWP
@@ -277,12 +279,12 @@ public class paginaLogin extends javax.swing.JFrame {
 
     private void loginAutActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loginAutActionPerformed
         try {
-
+            
             String usuario, senha;
-
+            
             usuario = userAcess.getText();
             senha = passwordAcess.getText();
-
+            
             Usuario usuario_DAO = new Usuario();
             usuario_DAO.setNome(usuario);
             usuario_DAO.setSenha(senha);
@@ -290,15 +292,21 @@ public class paginaLogin extends javax.swing.JFrame {
             usuario_DAO userDAO = new usuario_DAO();
             ResultSet resultadoDAO = userDAO.autenticarUsuario(usuario_DAO);
             
-            if(resultadoDAO.next()) {
+            if (resultadoDAO.next()) {
+                int x = resultadoDAO.getInt("usuario_Id");
+                usuario_Id.setID(x);
+                System.out.println(x);
                 NewJFrame telaPrincipal = new NewJFrame();
                 telaPrincipal.setVisible(true);
                 dispose();
-            }
-            else{
+            } else {
+                userAcess.setText("");
+                passwordAcess.setText("");
+                userAcess.requestFocus();
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inválida");
-        } }catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "formularioLogin"+erro);
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "formularioLogin" + erro);
         }
     }// GEN-LAST:event_loginAutActionPerformed
 
@@ -321,31 +329,34 @@ public class paginaLogin extends javax.swing.JFrame {
 
     private void passwordAcessKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_passwordAcessKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
+            
             try {
-
-            String usuario, senha;
-
-            usuario = userAcess.getText();
-            senha = passwordAcess.getText();
-
-            Usuario usuario_DAO = new Usuario();
-            usuario_DAO.setNome(usuario);
-            usuario_DAO.setSenha(senha);
-            
-            usuario_DAO userDAO = new usuario_DAO();
-            ResultSet resultadoDAO = userDAO.autenticarUsuario(usuario_DAO);
-            
-            if(resultadoDAO.next()) {
-                NewJFrame telaPrincipal = new NewJFrame();
-                telaPrincipal.setVisible(true);
-                dispose();
+                
+                String usuario, senha;
+                
+                usuario = userAcess.getText();
+                senha = passwordAcess.getText();
+                
+                Usuario usuario_DAO = new Usuario();
+                usuario_DAO.setNome(usuario);
+                usuario_DAO.setSenha(senha);
+                
+                usuario_DAO userDAO = new usuario_DAO();
+                ResultSet resultadoDAO = userDAO.autenticarUsuario(usuario_DAO);
+                
+                if (resultadoDAO.next()) {
+                    NewJFrame telaPrincipal = new NewJFrame();
+                    telaPrincipal.setVisible(true);
+                    dispose();
+                } else {
+                    userAcess.setText("");
+                    passwordAcess.setText("");
+                    userAcess.requestFocus();
+                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválida");
+                }
+            } catch (SQLException erro) {
+                JOptionPane.showMessageDialog(null, "formularioLogin" + erro);
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Usuário ou senha inválida");
-        } }catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "formularioLogin"+erro);
-        }
         }
     }// GEN-LAST:event_passwordAcessKeyPressed
 
