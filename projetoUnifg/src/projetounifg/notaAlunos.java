@@ -6,7 +6,10 @@ package projetounifg;
 
 import SIstemaCadastro.Aluno;
 import SIstemaCadastro.AlunosDAO;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projetounifg.notas;
 
 /**
@@ -46,13 +49,13 @@ public class notaAlunos extends javax.swing.JFrame {
         nomeDoAluno = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         resultadoMedia = new javax.swing.JTextField();
-        nota1 = new javax.swing.JFormattedTextField();
-        nota2 = new javax.swing.JFormattedTextField();
-        nota3 = new javax.swing.JFormattedTextField();
-        nota4 = new javax.swing.JFormattedTextField();
         gerarBoletim1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         status = new javax.swing.JTextField();
+        nota2 = new javax.swing.JTextField();
+        nota3 = new javax.swing.JTextField();
+        nota4 = new javax.swing.JTextField();
+        nota1 = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -100,6 +103,11 @@ public class notaAlunos extends javax.swing.JFrame {
                 gerarBoletimActionPerformed(evt);
             }
         });
+        gerarBoletim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                gerarBoletimKeyPressed(evt);
+            }
+        });
 
         ra.setBackground(java.awt.Color.white);
         ra.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -126,35 +134,6 @@ public class notaAlunos extends javax.swing.JFrame {
         resultadoMedia.setBackground(java.awt.Color.white);
         resultadoMedia.setForeground(java.awt.Color.black);
 
-        try {
-            nota1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#*#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        nota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nota1ActionPerformed(evt);
-            }
-        });
-
-        try {
-            nota2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#*#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            nota3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#*#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            nota4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#*#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         gerarBoletim1.setBackground(java.awt.Color.white);
         gerarBoletim1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gerarBoletim1.setForeground(java.awt.Color.black);
@@ -175,6 +154,40 @@ public class notaAlunos extends javax.swing.JFrame {
         status.setBackground(java.awt.Color.white);
         status.setForeground(java.awt.Color.black);
 
+        nota2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nota2ActionPerformed(evt);
+            }
+        });
+        nota2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nota2KeyPressed(evt);
+            }
+        });
+
+        nota3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nota3KeyPressed(evt);
+            }
+        });
+
+        nota4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nota4ActionPerformed(evt);
+            }
+        });
+        nota4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nota4KeyPressed(evt);
+            }
+        });
+
+        nota1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nota1KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -184,23 +197,23 @@ public class notaAlunos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nota1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(nota1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nota3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(nota3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(272, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(264, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,8 +273,8 @@ public class notaAlunos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(resultadoMedia)
-                            .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -299,10 +312,43 @@ public class notaAlunos extends javax.swing.JFrame {
         ra.setText(modelo.getRa());
     }
 
+    public void listarDados() {
+        try {
+            AlunosDAO aluno = new AlunosDAO();
+            NewJFrame tabela = new NewJFrame();
+            DefaultTableModel model = (DefaultTableModel) tabela.tbAlunos.getModel();
+            model.setNumRows(0);
+
+            ArrayList<Aluno> lista = (ArrayList<Aluno>) aluno.listarAluno();
+
+            for (int num = 0; num < lista.size(); num++) {
+                Aluno aluno1 = lista.get(num);
+                Object[] alunos = {
+                    aluno1.getNome(),
+                    aluno1.getRa(),
+                    aluno1.getCurso(),
+                    aluno1.getData(),
+                    aluno1.getTelefone(),
+                    aluno1.getMunicipio(),
+                    aluno1.getCpf(),
+                    aluno1.getPeriodo1(),
+                    aluno1.getCampus(),
+                    aluno1.getUf(),
+                    aluno1.getNota(),
+                    aluno1.getFaltas(),
+                    aluno1.getStatus(),};
+                model.addRow(alunos);
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "ListarDados tela" + erro);
+        }
+    }
+
     private void definirMedia() {
 
         String ra = this.ra.getText();
         String resultado = resultadoMedia.getText();
+        String status = this.status.getText();
 
         if (resultado.isEmpty() || ra.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não foi possível definir a média do aluno.\n Por favor, tente novamente.");
@@ -310,12 +356,14 @@ public class notaAlunos extends javax.swing.JFrame {
             SIstemaCadastro.Aluno alunos = new Aluno();
             alunos.setRa(ra);
             alunos.setNota(Double.parseDouble(resultado));
+            alunos.setStatus(status);
             SIstemaCadastro.AlunosDAO alunosDAO = new AlunosDAO();
             alunosDAO.definirMedia(alunos);
             JOptionPane.showMessageDialog(null, "Estamos te redirecionando para para página principal.");
             dispose();
             NewJFrame telaPrincipal = new NewJFrame();
             telaPrincipal.setVisible(true);
+            listarDados();
         }
     }
 
@@ -353,14 +401,46 @@ public class notaAlunos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_gerarBoletimActionPerformed
 
-    private void nota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota1ActionPerformed
-
-    }//GEN-LAST:event_nota1ActionPerformed
-
     private void gerarBoletim1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarBoletim1ActionPerformed
         definirMedia();
 
     }//GEN-LAST:event_gerarBoletim1ActionPerformed
+
+    private void nota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nota2ActionPerformed
+
+    private void nota1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nota1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            nota2.requestFocus();
+        }
+    }//GEN-LAST:event_nota1KeyPressed
+
+    private void nota2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nota2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            nota3.requestFocus();
+        }
+    }//GEN-LAST:event_nota2KeyPressed
+
+    private void nota3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nota3KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            nota4.requestFocus();
+        }
+    }//GEN-LAST:event_nota3KeyPressed
+
+    private void nota4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nota4KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            gerarBoletim.requestFocus();
+        }
+    }//GEN-LAST:event_nota4KeyPressed
+
+    private void nota4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nota4ActionPerformed
+
+    private void gerarBoletimKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gerarBoletimKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gerarBoletimKeyPressed
 
     /**
      * @param args the command line arguments
@@ -413,10 +493,10 @@ public class notaAlunos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nomeDoAluno;
-    private javax.swing.JFormattedTextField nota1;
-    private javax.swing.JFormattedTextField nota2;
-    private javax.swing.JFormattedTextField nota3;
-    private javax.swing.JFormattedTextField nota4;
+    private javax.swing.JTextField nota1;
+    private javax.swing.JTextField nota2;
+    private javax.swing.JTextField nota3;
+    private javax.swing.JTextField nota4;
     private javax.swing.JTextField ra;
     private javax.swing.JTextField resultadoMedia;
     private javax.swing.JTextField status;

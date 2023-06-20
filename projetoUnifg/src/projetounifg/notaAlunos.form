@@ -57,28 +57,28 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nota4" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nota4" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel4" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nota1" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nota1" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nota3" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nota3" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nota2" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="nota2" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="272" max="32767" attributes="0"/>
+                  <EmptySpace pref="264" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace pref="11" max="32767" attributes="0"/>
@@ -154,8 +154,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="resultadoMedia" alignment="3" max="32767" attributes="0"/>
-                              <Component id="nota2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="status" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nota2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -285,6 +285,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gerarBoletimActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="gerarBoletimKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="ra">
@@ -338,37 +339,6 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="nota1">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#*#" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nota1ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="nota2">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#*#" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="nota3">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#*#" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="nota4">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#*#" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="gerarBoletim1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -413,6 +383,28 @@
               <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nota2">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nota2ActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nota2KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nota3">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nota3KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nota4">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nota4ActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nota4KeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nota1">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nota1KeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
