@@ -21,21 +21,6 @@ public class notas {
         double media = (nota1 + nota2 + nota3 + nota4) / 4;
         return media;
     }
-
-//    public String situacao() {
-//   
-//
-//        if (mediaGeral >= 7) {
-//            return "Aprovado";
-//        } else if (mediaGeral < 5) {
-//            return "Reprovado";
-//        } else if (mediaGeral < 7) {
-//            return "Recuperação";
-//
-//        }
-//        return null;
-//    }
-
     /**
      * @return the nome
      */
