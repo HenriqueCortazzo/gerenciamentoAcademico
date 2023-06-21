@@ -257,16 +257,14 @@ public class telaCadastro extends javax.swing.JFrame {
                     confirmPassword.setText("");
                     newAcess.requestFocus();
                 } else {
-                    Usuario usuarioCadastroDAO = new Usuario();
-                    usuarioCadastroDAO.setNome(usuario);
-                    usuarioCadastroDAO.setSenha(senha);
-                    usuarioCadastroDAO.setConfSenha(confSenha);
-
-                    int resultadoDAO = CadastroUserDAO.cadastrarUsuario(usuarioCadastroDAO);
-
-                    if (resultadoDAO > 0 && senha.equals(confSenha)) {
+                    if (senha.equals(confSenha)) {
                         JOptionPane.showMessageDialog(null, "Informamos que ao aceitar os Termos de Condições as informações de usuário ficarão salvas em um banco de dados.");
                         JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+                        Usuario usuarioCadastroDAO = new Usuario();
+                        usuarioCadastroDAO.setNome(usuario);
+                        usuarioCadastroDAO.setSenha(senha);
+                        usuarioCadastroDAO.setConfSenha(confSenha);
+                        int resultadoDAO = CadastroUserDAO.cadastrarUsuario(usuarioCadastroDAO);
                         paginaLogin telaLogin = new paginaLogin();
                         telaLogin.setVisible(true);
                         dispose();
@@ -287,6 +285,7 @@ public class telaCadastro extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "É necessário aceitar os Termos de Condições para continuar.");
+            newAcess.requestFocus();
         }
 
 
