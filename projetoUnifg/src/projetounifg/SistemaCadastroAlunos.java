@@ -72,7 +72,7 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
         dataNascismento = new javax.swing.JFormattedTextField();
         raAluno = new javax.swing.JFormattedTextField();
         cpf = new javax.swing.JFormattedTextField();
-        municipio = new javax.swing.JFormattedTextField();
+        municipio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -313,12 +313,6 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        try {
-            municipio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUUUUUUUUUUU")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -379,18 +373,20 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_3))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jLabel11)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(municipio))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(62, 62, 62)
+                                        .addComponent(jLabel5)))
                                 .addGap(18, 18, 18)
-                                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel11)
-                                .addGap(18, 18, 18)
-                                .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(49, 49, 49))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -410,7 +406,7 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
                     .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(raAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +414,7 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(curso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
@@ -504,7 +500,7 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
 
     private void faltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faltasActionPerformed
         if (tbAlunos.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione um Aluno para gerenciamento de notas.");
+            JOptionPane.showMessageDialog(null, "Selecione um Aluno para gerenciamento de faltas.");
         };
         faltaAlunos novaJanela = new faltaAlunos();
         int rowSelected = tbAlunos.getSelectedRow();
@@ -788,9 +784,9 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton btn_1;
-    private javax.swing.JRadioButton btn_2;
-    private javax.swing.JRadioButton btn_3;
+    public javax.swing.JRadioButton btn_1;
+    public javax.swing.JRadioButton btn_2;
+    public javax.swing.JRadioButton btn_3;
     private javax.swing.JToggleButton cadastrar;
     private javax.swing.JComboBox<String> campus;
     private javax.swing.JFormattedTextField cpf;
@@ -815,7 +811,7 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JFormattedTextField municipio;
+    private javax.swing.JTextField municipio;
     private javax.swing.JTextField nomeAluno;
     private javax.swing.JFormattedTextField raAluno;
     public javax.swing.JTable tbAlunos;

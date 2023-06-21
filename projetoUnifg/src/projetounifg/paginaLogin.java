@@ -46,8 +46,8 @@ public class paginaLogin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         loginAut = new javax.swing.JButton();
         userAcess = new javax.swing.JTextField();
-        passwordAcess = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        passwordAcess = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -109,21 +109,6 @@ public class paginaLogin extends javax.swing.JFrame {
             }
         });
 
-        passwordAcess.setBackground(java.awt.Color.white);
-        passwordAcess.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        passwordAcess.setForeground(java.awt.Color.black);
-        passwordAcess.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10));
-        passwordAcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordAcessActionPerformed(evt);
-            }
-        });
-        passwordAcess.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordAcessKeyPressed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         jLabel12.setForeground(java.awt.Color.white);
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -135,18 +120,13 @@ public class paginaLogin extends javax.swing.JFrame {
             }
         });
 
+        passwordAcess.setBackground(java.awt.Color.white);
+        passwordAcess.setForeground(java.awt.Color.black);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userAcess, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordAcess, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -157,12 +137,20 @@ public class paginaLogin extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addComponent(loginAut, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(126, 126, 126))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userAcess, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                    .addComponent(passwordAcess))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,8 +167,8 @@ public class paginaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordAcess, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(passwordAcess, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(loginAut, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
@@ -254,45 +242,6 @@ public class paginaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_userAcessKeyPressed
 
-    private void passwordAcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordAcessActionPerformed
-
-    }//GEN-LAST:event_passwordAcessActionPerformed
-
-    private void passwordAcessKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordAcessKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-
-                String usuario, senha;
-
-                usuario = userAcess.getText();
-                senha = passwordAcess.getText();
-
-                Usuario usuario_DAO = new Usuario();
-                usuario_DAO.setNome(usuario);
-                usuario_DAO.setSenha(senha);
-
-                usuario_DAO userDAO = new usuario_DAO();
-                ResultSet resultadoDAO = userDAO.autenticarUsuario(usuario_DAO);
-
-                if (resultadoDAO.next()) {
-                    int x = resultadoDAO.getInt("usuario_Id");
-                    usuario_Id.setID(x);
-                    System.out.println(x);
-                    SistemaCadastroAlunos telaPrincipal = new SistemaCadastroAlunos();
-                    telaPrincipal.setVisible(true);
-                    dispose();
-                } else {
-                    userAcess.setText("");
-                    passwordAcess.setText("");
-                    userAcess.requestFocus();
-                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválida");
-                }
-            } catch (SQLException erro) {
-                JOptionPane.showMessageDialog(null, "formularioLogin" + erro);
-            }
-        }
-    }//GEN-LAST:event_passwordAcessKeyPressed
-
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         telaCadastro telaCad = new telaCadastro();
         telaCad.setVisible(true);
@@ -350,7 +299,7 @@ public class paginaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginAut;
-    private javax.swing.JTextField passwordAcess;
+    private javax.swing.JPasswordField passwordAcess;
     private javax.swing.JTextField userAcess;
     // End of variables declaration//GEN-END:variables
 }
