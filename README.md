@@ -39,6 +39,7 @@ Dessa forma você terá uma conexão estavel para realizar operaçoes com o banc
 5. Abra o Xampp e ative o MySQL.
 
 ![xamppstart](https://github.com/HenriqueCortazzo/gerenciamentoAcademico/assets/134107916/505b097e-2aed-4fe3-a2ea-1f1a0dd5da8a)
+
 Dessa forma você irá conseguir ativar o MySQL em sua máquina.
 
 
