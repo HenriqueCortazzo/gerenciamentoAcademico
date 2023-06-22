@@ -8,7 +8,7 @@ Referente a notas e faltas, o software calcula a media geral e informa ao admini
 
 Em resumo, o Software de Gerenciamento Acadêmico é uma solução abrangente e eficiente, com fácil manuseio e interface simples para a gestão acadêmica. Ao simplificar e automatizar o processo de registro de faltas e notas, ele ajuda a economizar tempo e melhora a precisão dos registros.
 
-1. Acesso a um IDE.
+1. Acesso a uma IDE.
 
 ![IDEexemplos](https://github.com/HenriqueCortazzo/gerenciamentoAcademico/assets/134107916/9b6e28e1-9740-48e8-87f5-d129a1af16e1)
 
@@ -27,7 +27,7 @@ Dessa forma você terá acesso ao código mencionado.
 
 ![DownConnector](https://github.com/HenriqueCortazzo/gerenciamentoAcademico/assets/134107916/d68027c3-7890-4b30-a995-7f456716b291)
 ![ConnectorInstalProj](https://github.com/HenriqueCortazzo/gerenciamentoAcademico/assets/134107916/a29036e4-91e1-44f4-a8df-2d6fef43e354)
-Dessa forma você terá uma conexão estavel para realizar operaçoes com o banco de dados.
+Dessa forma você terá uma conexão estável para realizar operações com o banco de dados.
 
 
 4. Baixe o Xampp e faça sua instalação.
