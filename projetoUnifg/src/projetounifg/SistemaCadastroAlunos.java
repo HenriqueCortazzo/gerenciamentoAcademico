@@ -6,6 +6,7 @@ package projetounifg;
 
 import SIstemaCadastro.Aluno;
 import SIstemaCadastro.AlunosDAO;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -333,6 +334,9 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
         });
 
         receberPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                receberPesquisaKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 receberPesquisaKeyReleased(evt);
             }
@@ -846,20 +850,26 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
     }//GEN-LAST:event_cursoActionPerformed
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-    
+
         pesquisarAlunos(receberPesquisa.getText());
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void receberPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_receberPesquisaKeyReleased
-     
+
     }//GEN-LAST:event_receberPesquisaKeyReleased
 
     private void limparBuscasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparBuscasActionPerformed
-      listarDados();
-      receberPesquisa.setText("");
-      limparCampos();
-      raAluno.requestFocus();
+        listarDados();
+        receberPesquisa.setText("");
+        limparCampos();
+        raAluno.requestFocus();
     }//GEN-LAST:event_limparBuscasActionPerformed
+
+    private void receberPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_receberPesquisaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            pesquisarAlunos(receberPesquisa.getText());
+        }
+    }//GEN-LAST:event_receberPesquisaKeyPressed
 
     public static void main(String args[]) {
 

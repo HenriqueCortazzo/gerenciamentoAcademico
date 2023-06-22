@@ -790,6 +790,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="receberPesquisa">
                   <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="receberPesquisaKeyPressed"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="receberPesquisaKeyReleased"/>
                   </Events>
                   <AuxValues>
