@@ -14,6 +14,7 @@ import SIstemaCadastro.Aluno;
 import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import projetounifg.SistemaCadastroAlunos;
 import userActions.usuario_Id;
 
 /**
@@ -43,7 +44,7 @@ public class AlunosDAO {
             preparar.setString(8, aluno.getPeriodo1());
             preparar.setString(9, aluno.getCampus());
             preparar.setString(10, aluno.getUf());
-            preparar.setString(11, usuario_Id.getID()+"");
+            preparar.setString(11, usuario_Id.getID() + "");
 
             int resultado = preparar.executeUpdate();
 
@@ -191,6 +192,44 @@ public class AlunosDAO {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Falha ao atribuir nota e status: " + erro.getMessage());
         }
+    }
+
+    public ArrayList<Aluno> pesquisarAluno(String desc) throws SQLException {
+        projetounifg.SistemaCadastroAlunos system = new SistemaCadastroAlunos();
+        conn = (Connection) new ConexaoDAO().conectBD();
+        String sql = "SELECT * FROM sistemaCadastro WHERE nome_aluno LIKE ? AND idconta = ?";
+        ArrayList<Aluno> lista = new ArrayList<>();
+
+        try {
+            preparar = (PreparedStatement) conn.prepareStatement(sql);
+            preparar.setString(1, "%" + desc + "%");
+            preparar.setString(2, usuario_Id.getID() + "");
+            rs = preparar.executeQuery();
+
+            while (rs.next()) {
+                Aluno aluno = new Aluno();
+
+                aluno.setNome(rs.getString("nome_aluno"));
+                aluno.setRa(rs.getString("ra_Aluno"));
+                aluno.setCurso(rs.getString("curso"));
+                aluno.setData(rs.getString("data_nascimento"));
+                aluno.setTelefone(rs.getString("tell"));
+                aluno.setMunicipio(rs.getString("municipio"));
+                aluno.setCpf(rs.getString("cpf"));
+                aluno.setPeriodo1(rs.getString("periodo"));
+                aluno.setCampus(rs.getString("campus"));
+                aluno.setUf(rs.getString("uf"));
+                aluno.setNota(rs.getDouble("nota"));
+                aluno.setFaltas(rs.getInt("faltas"));
+                aluno.setStatus(rs.getString("status"));
+
+                lista.add(aluno);
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "pesquisarAluno: " + erro);
+        }
+
+        return lista;
     }
 
 }

@@ -73,6 +73,9 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
         raAluno = new javax.swing.JFormattedTextField();
         cpf = new javax.swing.JFormattedTextField();
         municipio = new javax.swing.JTextField();
+        pesquisar = new javax.swing.JButton();
+        limparBuscas = new javax.swing.JButton();
+        receberPesquisa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -313,6 +316,28 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        pesquisar.setBackground(java.awt.Color.white);
+        pesquisar.setText("Pesquisar");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
+            }
+        });
+
+        limparBuscas.setBackground(java.awt.Color.white);
+        limparBuscas.setText("Limpar Buscas");
+        limparBuscas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparBuscasActionPerformed(evt);
+            }
+        });
+
+        receberPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                receberPesquisaKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -320,15 +345,6 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(raAluno)
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(nomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -353,9 +369,24 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
                                 .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(122, 122, 122)
                                 .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(130, 130, 130)
+                                .addGap(119, 119, 119)
                                 .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(raAluno)
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(nomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(receberPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(gerar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,17 +417,17 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
                                         .addGap(62, 62, 62)
                                         .addComponent(jLabel5)))
                                 .addGap(18, 18, 18)
-                                .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(limparBuscas, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -432,8 +463,15 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
                     .addComponent(gerar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(faltas, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(receberPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(limparBuscas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -453,17 +491,18 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -486,7 +525,7 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1432, 685));
+        setSize(new java.awt.Dimension(1426, 725));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -562,6 +601,38 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
 
     }
 
+    private void pesquisarAlunos(String desc) {
+        try {
+
+            AlunosDAO aluno = new AlunosDAO();
+            DefaultTableModel model = (DefaultTableModel) tbAlunos.getModel();
+            model.setNumRows(0);
+
+            ArrayList<Aluno> lista = (ArrayList<Aluno>) aluno.pesquisarAluno(desc);
+
+            for (int num = 0; num < lista.size(); num++) {
+                Aluno aluno1 = lista.get(num);
+                Object[] alunos = {
+                    aluno1.getNome(),
+                    aluno1.getRa(),
+                    aluno1.getCurso(),
+                    aluno1.getData(),
+                    aluno1.getTelefone(),
+                    aluno1.getMunicipio(),
+                    aluno1.getCpf(),
+                    aluno1.getPeriodo1(),
+                    aluno1.getCampus(),
+                    aluno1.getUf(),
+                    aluno1.getNota(),
+                    aluno1.getFaltas(),
+                    aluno1.getStatus(),};
+                model.addRow(alunos);
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "ListarDados tela" + erro);
+        }
+
+    }
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
 
         String nome, ra, curso, notas, faltas, dataNascimento, tell, municipio, uf, cpf, periodo1, periodo2, periodo3, campus;
@@ -774,6 +845,22 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cursoActionPerformed
 
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
+    
+        pesquisarAlunos(receberPesquisa.getText());
+    }//GEN-LAST:event_pesquisarActionPerformed
+
+    private void receberPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_receberPesquisaKeyReleased
+     
+    }//GEN-LAST:event_receberPesquisaKeyReleased
+
+    private void limparBuscasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparBuscasActionPerformed
+      listarDados();
+      receberPesquisa.setText("");
+      limparCampos();
+      raAluno.requestFocus();
+    }//GEN-LAST:event_limparBuscasActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -811,9 +898,12 @@ public class SistemaCadastroAlunos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton limparBuscas;
     private javax.swing.JTextField municipio;
     private javax.swing.JTextField nomeAluno;
+    private javax.swing.JButton pesquisar;
     private javax.swing.JFormattedTextField raAluno;
+    public javax.swing.JTextField receberPesquisa;
     public javax.swing.JTable tbAlunos;
     private javax.swing.JFormattedTextField tell;
     private javax.swing.JComboBox<String> uf;
