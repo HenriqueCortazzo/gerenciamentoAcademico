@@ -74,8 +74,8 @@ TELA DE FALTAS:
 
 Autores:
 
-Antony de Almeida Viana
-Eduardo Dourado Marotta
-Lucas Rodrigues Teixeira
-Matheus Henrique Vieira Paula
+Antony de Almeida Viana, 
+Eduardo Dourado Marotta, 
+Lucas Rodrigues Teixeira, 
+Matheus Henrique Vieira Paula.
 
