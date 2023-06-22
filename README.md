@@ -73,3 +73,9 @@ TELA DE FALTAS:
 ![Faltas](https://github.com/HenriqueCortazzo/gerenciamentoAcademico/assets/134107916/f82d8adc-6291-4ca5-aafa-029817a2da16)
 
 Autores:
+
+Antony de Almeida Viana
+Eduardo Dourado Marotta
+Lucas Rodrigues Teixeira
+Matheus Henrique Vieira Paula
+
